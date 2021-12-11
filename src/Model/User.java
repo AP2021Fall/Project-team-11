@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class User {
     protected static ArrayList<User> users = new ArrayList<>();
+    private static User loggedInUser;
     protected String username;
     protected String password;
     protected String emailAddress;
@@ -17,6 +18,26 @@ public class User {
 
     public static ArrayList<User> getUsers() {
         return users;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public static User getLoggedInUser() {
+        return loggedInUser;
+    }
+
+    public static void setLoggedInUser(User loggedInUser) {
+        User.loggedInUser = loggedInUser;
     }
 
     public static User getUserWithUserName(String username){

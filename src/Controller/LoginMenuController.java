@@ -25,6 +25,17 @@ public class LoginMenuController {
 
     }
 
+    public String logInUser(String userName , String password){
+        User user = User.getUserWithUserName(userName);
+        if(user == null)
+            return "There is not any user with username: " + userName;
+        if(!user.getPassword().equals(password))
+            return "Username and password didn't match!";
+        User.setLoggedInUser(user);
+        return "user logged in successfully!";
+    }
+
+
 
 
 

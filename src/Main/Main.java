@@ -8,7 +8,7 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         System.out.println("welcome sry I dont know the current version");
-        new LoginMenuView().run();
+        LoginMenuView.getLoginMenuView().run();
     }
 
     public static Scanner getScanner() {
