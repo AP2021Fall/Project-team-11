@@ -8,6 +8,7 @@ public class User {
     protected String username;
     protected String password;
     protected String emailAddress;
+    protected ArrayList<Team> teams = new ArrayList<>();
 
 
     public User(String username, String password, String emailAddress) {
