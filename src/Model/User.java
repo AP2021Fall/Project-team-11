@@ -65,4 +65,17 @@ public class User {
         }
         return null;
     }
+
+
+    public ArrayList<Team> getTeams() {
+        return teams;
+    }
+
+    public Team getTeamByTeamName(String teamName){
+        for (Team team : teams) {
+            if(team.getTeamName().equals(teamName))
+                return team;
+        }
+        return null;
+    }
 }

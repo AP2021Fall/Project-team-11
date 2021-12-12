@@ -14,4 +14,25 @@ public class Team {
     public static ArrayList<Team> getTeams() {
         return teams;
     }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public Leader getTeamLeader() {
+        return teamLeader;
+    }
+
+
+    public ArrayList<Member> getMembers() {
+        return members;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public int getTeamNumber() {
+        return teamNumber;
+    }
 }
