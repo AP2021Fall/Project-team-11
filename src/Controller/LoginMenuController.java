@@ -1,5 +1,6 @@
 package Controller;
 
+import Main.Main;
 import Model.Member;
 import Model.User;
 
@@ -16,7 +17,7 @@ public class LoginMenuController {
             return "Your passwords are not the same!";
         if(User.getUserWithEmail(email) !=null)
             return "User with this email already exists!";
-        if(!checkMatching(email,"[\\w\\d.]+@((gmail.com)|(yahoo.com))"))
+        if(!Main.checkMatching(email,"[\\w\\d.]+@((gmail.com)|(yahoo.com))"))
             return "Email address is invalid!";
         Member newMember = new Member(userName,password1,email);
         User.getUsers().add(newMember);
@@ -39,9 +40,5 @@ public class LoginMenuController {
 
 
 
-    private boolean checkMatching(String input , String regex){
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(input);
-        return matcher.matches();
-    }
+
 }

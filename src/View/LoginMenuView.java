@@ -12,7 +12,7 @@ public class LoginMenuView {
     Scanner scanner = Main.getScanner();
     String input;
     public void run(){
-        while(!(input=scanner.nextLine()).isEmpty()){
+        while(!(input=scanner.nextLine()).equals("exit")){
             String [] splitInput = input.split(" ");
 
             if(input.startsWith("user create")){
