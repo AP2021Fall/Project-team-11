@@ -9,6 +9,8 @@ public class Team {
     private Leader teamLeader;
     private Date creationDate;
     private ArrayList<Member> members = new ArrayList<>();
+    private final ArrayList<Team> allTasks = new ArrayList<>();
+
 
 
     public static ArrayList<Team> getTeams() {
