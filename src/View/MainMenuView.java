@@ -1,13 +1,18 @@
 package View;
 
+import Controller.MainMenuController;
 import Main.Main;
+import Model.Leader;
+import Model.Team;
 import Model.User;
 
 import java.util.Scanner;
 
 public class MainMenuView {
     private static MainMenuView mainMenuView = new MainMenuView();
+    MainMenuController controller = new MainMenuController();
     Scanner scanner = Main.getScanner();
+    private static Team selectedTeam;
     String input;
     public void run(){
         while(!(input = scanner.nextLine()).isEmpty()){
@@ -37,6 +42,27 @@ public class MainMenuView {
                     System.out.println("invalid menu name");
             }
 
+            else if(User.getLoggedInUser() instanceof Leader){
+
+                User user = User.getLoggedInUser();
+                String[] splitInput = input.split(" ");
+
+                if(input.equals("show --teams")){
+                    for (Team team : user.getTeams())
+                        System.out.println(team.getTeamName());
+
+                }
+
+                else if(input.startsWith("create --team")){
+                    System.out.println(controller.createTeam(splitInput[2]));
+                }
+
+                else if(input.startsWith("show --team")){
+                    System.out.println(controller.showTeam(splitInput[2]));
+                }
+            }
+
+
             else if(input.equals("logout")){
                 User.setLoggedInUser(null);
                 return;
@@ -48,6 +74,9 @@ public class MainMenuView {
 
     }
 
+    public static void setSelectedTeam(Team selectedTeam) {
+        MainMenuView.selectedTeam = selectedTeam;
+    }
 
     public static MainMenuView getMainMenuView() {
         return mainMenuView;

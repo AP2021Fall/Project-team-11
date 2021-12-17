@@ -8,7 +8,8 @@ public class User {
     protected String username;
     protected String password;
     protected String emailAddress;
-    int score;
+    protected Team selectedTeam;
+    protected int score;
     protected ArrayList<Team> teams = new ArrayList<>();
 
 
@@ -78,5 +79,13 @@ public class User {
                 return team;
         }
         return null;
+    }
+
+    public Team getSelectedTeam() {
+        return selectedTeam;
+    }
+
+    public void setSelectedTeam(Team selectedTeam) {
+        this.selectedTeam = selectedTeam;
     }
 }
