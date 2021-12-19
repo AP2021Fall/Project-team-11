@@ -6,6 +6,7 @@ import Model.User;
 public class TaskPageController {
     private User theUser;
     private Task theTask;
+    int salam;
 
 
 
