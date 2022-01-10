@@ -2,13 +2,13 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Task extends Date {
+public class Task {
     private static ArrayList<Task> allTasks = new ArrayList<>();
     private int id;
     private String title;
-    private String Description;
+    private String description;
     private Date creation;
-    private Date  deadline;
+    private Date deadline;
     private ArrayList<User>  assignedUsers = new ArrayList<>();
     private ArrayList<String> comments = new ArrayList<>();
 
@@ -20,15 +20,17 @@ public class Task extends Date {
 
 
     public Task(int id, String title, String description, Date dateAndTimeOfCreation, Date dateAndTimeOfDeadline, ArrayList<User> assignedUsers, ArrayList<String> comments) {
+
         this.id = id;
         this.title = title;
-        Description = description;
+        this.description = description;
         this.assignedUsers = assignedUsers;
         this.comments = comments;
     }
 
     public Task(Date dateAndTimeOfCreation, Date dateAndTimeOfDeadline) {
         this.deadline = dateAndTimeOfDeadline;
+        this.creation = dateAndTimeOfCreation;
     }
 
     public static ArrayList<Task> getAllTasks() {
@@ -44,7 +46,7 @@ public class Task extends Date {
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public Date getCreation() {
@@ -72,7 +74,7 @@ public class Task extends Date {
     }
 
     public void setDescription(String description) {
-        Description = description;
+        description = description;
     }
 
     public void setCreation(Date creation) {
@@ -125,4 +127,5 @@ public class Task extends Date {
     public void addUser(int id, String username){
         getTaskById(id).assignedUsers.add(User.getUserWithUserName(username));
     }
+
 }

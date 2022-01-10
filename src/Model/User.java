@@ -88,4 +88,9 @@ public class User {
     public void setSelectedTeam(Team selectedTeam) {
         this.selectedTeam = selectedTeam;
     }
+
+    protected ArrayList<Task> tasks = new ArrayList<>();
+
+
+    public ArrayList<Task> getTasks(){ return  this.tasks ;}
 }
