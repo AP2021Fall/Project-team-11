@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Main {
+
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         System.out.println("welcome sry I dont know the current version");
@@ -22,4 +23,7 @@ public class Main {
         Matcher matcher = pattern.matcher(input);
         return matcher.matches();
     }
+    public static Matcher getMatcher(String command, String regex) {
+        return Pattern.compile(regex).matcher(command);
+
 }

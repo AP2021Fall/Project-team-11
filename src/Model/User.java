@@ -3,6 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class User {
+    public static boolean isLeader;
     protected static ArrayList<User> users = new ArrayList<>();
     private static User loggedInUser;
     protected String username;

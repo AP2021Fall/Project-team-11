@@ -1,5 +1,6 @@
 package Model;
 
+
 import java.util.ArrayList;
 
 public class Task {
@@ -7,14 +8,12 @@ public class Task {
     private int id;
     private String title;
     private String description;
-    private Date creation;
+    private TaskPriority priority;
     private Date deadline;
+
     private ArrayList<User>  assignedUsers = new ArrayList<>();
     private ArrayList<String> comments = new ArrayList<>();
 
-    enum  Priority{
-        Highest, High, Low, Lowest
-    }
 
 
 
@@ -28,9 +27,8 @@ public class Task {
         this.comments = comments;
     }
 
-    public Task(Date dateAndTimeOfCreation, Date dateAndTimeOfDeadline) {
+    public Task (Date dateAndTimeOfDeadline) {
         this.deadline = dateAndTimeOfDeadline;
-        this.creation = dateAndTimeOfCreation;
     }
 
     public static ArrayList<Task> getAllTasks() {
@@ -49,9 +47,6 @@ public class Task {
         return description;
     }
 
-    public Date getCreation() {
-        return creation;
-    }
 
     public Date getDeadline() {
         return deadline;
@@ -77,10 +72,6 @@ public class Task {
         description = description;
     }
 
-    public void setCreation(Date creation) {
-        this.creation = creation;
-    }
-
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
@@ -103,29 +94,42 @@ public class Task {
         }
         return null;
     }
-    public void updateTitle(int id, String newTitle){
-        getTaskById(id).title = newTitle;
+    public void updateTitle(String newTitle){
+        this.title = newTitle;
     }
 
-    public void updateDescription(int id, String newDescription){
-        getTaskById(id).title = newDescription;
+    public void updateDescription(String newDescription){
+        this.title = newDescription;
     }
 
-    public void updatePriority(int id, String newPriority){
-
-
+    public void updatePriority(String newPriority){
+        if (newPriority.equals("Highest")){
+            this.priority = TaskPriority.Highest;
+        }
+        else if (newPriority.equals("High")){
+            this.priority = TaskPriority.High;
+        }
+        else if (newPriority.equals("Low")){
+            this.priority = TaskPriority.Low;
+        }
+        else if (newPriority.equals("Lowest")){
+            this.priority = TaskPriority.Lowest;
+        }
     }
 
-    public void updateDeadline(int id, Date newDeadline){
-        getTaskById(id).deadline = newDeadline;
+    public void updateDeadline(int year, int month, int day, int hour, int minute){
+        this.deadline = new Date(year, month, day, hour, minute);
     }
 
-    public void removeUsers(int id, String username){
-        getTaskById(id).assignedUsers.remove(User.getUserWithUserName(username));
+    public void removeUser(String username){
+        this.assignedUsers.remove(User.getUserWithUserName(username));
     }
 
-    public void addUser(int id, String username){
-        getTaskById(id).assignedUsers.add(User.getUserWithUserName(username));
+    public void addUser(String username){
+        if (User.getUserWithUserName(username) != null){
+            this.assignedUsers.add(User.getUserWithUserName(username));
+        }
+        else System.out.println("There is not any user with this username" + username + "in list! ");
     }
 
 }
