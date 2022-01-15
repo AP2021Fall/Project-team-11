@@ -10,6 +10,7 @@ public class Task {
     private String description;
     private TaskPriority priority;
     private Date deadline;
+    private int progressPercentage;
 
     private ArrayList<User>  assignedUsers = new ArrayList<>();
     private ArrayList<String> comments = new ArrayList<>();
@@ -25,11 +26,13 @@ public class Task {
         this.description = description;
         this.assignedUsers = assignedUsers;
         this.comments = comments;
+        this.progressPercentage = 0;
     }
 
     public Task (Date dateAndTimeOfDeadline) {
         this.deadline = dateAndTimeOfDeadline;
     }
+    public int getProgressPercentage(){return progressPercentage;}
 
     public static ArrayList<Task> getAllTasks() {
         return allTasks;
