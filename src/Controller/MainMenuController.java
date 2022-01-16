@@ -11,7 +11,7 @@ public class MainMenuController {
             return "There is another team with this name!";
         if(teamName.length()<5 || teamName.length()>12 || !Main.checkMatching(teamName,".*[A-Z].*") || !Main.checkMatching(teamName,".+\\d.*"))
             return "Team name is invalid!";
-        Admin.addTeam(new Team(teamName, (Leader) User.getLoggedInUser()));
+        Admin.addPendingTeam(new Team(teamName, (Leader) User.getLoggedInUser()));
         return "Team created successfully! Waiting For Admin’s confirmation…";
 
     }
@@ -48,9 +48,28 @@ public class MainMenuController {
 
         Date startDate = new Date(startTime);
         Date endDate = new Date(deadline);
-        MainMenuView.getSelectedTeam().addTask(new Task(title,startDate,endDate));
+        MainMenuView.getSelectedTeam().addTask(new Task(title,startDate,endDate,MainMenuView.getSelectedTeam()));
         return "Task created successfully!";
 
 
+    }
+
+    public String addMember(String username) {
+        User member = User.getUserWithUserName(username);
+        if(!(member instanceof Member))
+            return "No user exists with this username !";
+        MainMenuView.getSelectedTeam().addMember((Member) member);
+        member.addTeam(MainMenuView.getSelectedTeam());
+        return  "Member added successfully !";
+
+    }
+
+    public String deleteMember(String username) {
+        User member = User.getUserWithUserName(username);
+        if(!(member instanceof Member))
+            return "No user exists with this username !";
+        MainMenuView.getSelectedTeam().deleteMember((Member) member);
+        member.deleteTeam(MainMenuView.getSelectedTeam());
+        return "Member deleted successfully !";
     }
 }

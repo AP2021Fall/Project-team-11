@@ -11,6 +11,7 @@ public class Task implements Comparable{
     private Date deadline;
     private ArrayList<User>  assignedUsers = new ArrayList<>();
     private ArrayList<String> comments = new ArrayList<>();
+    private Team taskTeam;
     private static int lastId;
 
     @Override
@@ -19,11 +20,12 @@ public class Task implements Comparable{
     }
 
 
-    public Task(String title, Date startTime, Date deadline) {
+    public Task(String title, Date startTime, Date deadline, Team taskTeam) {
         this.title = title;
         this.startTime = startTime;
         this.deadline = deadline;
         this.id = ++lastId;
+        this.taskTeam=taskTeam;
     }
 
     public static ArrayList<Task> getAllTasks() {

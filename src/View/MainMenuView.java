@@ -2,10 +2,7 @@ package View;
 
 import Controller.MainMenuController;
 import Main.Main;
-import Model.Leader;
-import Model.Task;
-import Model.Team;
-import Model.User;
+import Model.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -79,7 +76,19 @@ public class MainMenuView {
                     }
 
                     if(input.startsWith("show --members")){
+                        ArrayList<Member> members = selectedTeam.getMembers();
+                        Collections.sort(members);
+                        for (Member member : members) {
+                            System.out.println(member.getUsername());
+                        }
+                    }
 
+                    if(input.startsWith("Add member")){
+                        System.out.println(controller.addMember(splitInput[3]));
+                    }
+
+                    if(input.startsWith("delete member")){
+                        System.out.println(controller.deleteMember(splitInput[3]));
                     }
                 }
             }

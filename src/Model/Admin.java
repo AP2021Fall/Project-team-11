@@ -15,7 +15,7 @@ public class Admin extends User{
         return pendingTeams;
     }
 
-    public static void addTeam(Team team){
+    public static void addPendingTeam(Team team){
         pendingTeams.add(team);
     }
 }

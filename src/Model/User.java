@@ -2,16 +2,15 @@ package Model;
 
 import java.util.ArrayList;
 
-public class User {
+public class User implements Comparable{
     public static boolean isLeader;
     protected static ArrayList<User> users = new ArrayList<>();
     private static User loggedInUser;
     protected String username;
     protected String password;
     protected String emailAddress;
-    protected Team selectedTeam;
-    protected int score;
     protected ArrayList<Team> teams = new ArrayList<>();
+    protected ArrayList<Task> tasks = new ArrayList<>();
 
 
     public User(String username, String password, String emailAddress) {
@@ -82,16 +81,18 @@ public class User {
         return null;
     }
 
-    public Team getSelectedTeam() {
-        return selectedTeam;
-    }
-
-    public void setSelectedTeam(Team selectedTeam) {
-        this.selectedTeam = selectedTeam;
-    }
-
-    protected ArrayList<Task> tasks = new ArrayList<>();
-
-
     public ArrayList<Task> getTasks(){ return  this.tasks ;}
+
+    @Override
+    public int compareTo(Object o) {
+        return this.username.compareTo(((User)o).username);
+    }
+
+    public void addTeam(Team team){
+        teams.add(team);
+    }
+
+    public void deleteTeam(Team team){
+        teams.remove(team);
+    }
 }
