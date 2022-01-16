@@ -17,13 +17,13 @@ public class TeamMenuController {
         }
         return output;
     }
-
-    public ArrayList<String> roadMap(Team team){
+//commented for now because of errors
+/*    public ArrayList<String> roadMap(Team team){
         ArrayList<String> output = new ArrayList<>();
         for (Task task : team.getAllTasks() ){
             output.add(task.getTitle() + " : " + task.getProgressPercentage() +"% done");
         }
         return output;
-    }
+    }*/
 
 }

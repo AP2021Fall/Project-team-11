@@ -1,6 +1,7 @@
 package Model;
 
-import java.util.ArrayList;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Team {
     private static ArrayList<Team> teams = new ArrayList<>();
@@ -8,10 +9,9 @@ public class Team {
     private int teamId;
     private Leader teamLeader;
     private Date creationDate;
-    private ArrayList<Member> members = new ArrayList<>();
+    private HashMap <Member , Integer> scores= new HashMap <>();
     private static int idGenerator;
-    private final ArrayList<Task> allTasks = new ArrayList<>();
-
+    private ArrayList <Task> allTasks = new ArrayList<>();
 
     public Team(String teamName, Leader teamLeader) {
         this.teamName = teamName;
@@ -32,9 +32,12 @@ public class Team {
         return teamLeader;
     }
 
-
+    public HashMap<Member, Integer> getTeamMembersScores(){
+        sortTeamScores();
+        return scores;
+    }
     public ArrayList<Member> getMembers() {
-        return members;
+        return new ArrayList<>(scores.keySet());
     }
 
     public Date getCreationDate() {
@@ -49,13 +52,9 @@ public class Team {
         this.teamLeader = teamLeader;
     }
 
-    public void addMember(Member member){
-        members.add(member);
-    }
+    public void addMember(Member member){scores.put(member , 0);}
 
-    public void deleteMember(Member member){
-        members.remove(member);
-    }
+    public void deleteMember(Member member){scores.remove(member);}
 
     public static Team getTeamWithTeamName (String teamName){
         for (Team team : teams) {
@@ -73,8 +72,14 @@ public class Team {
         return null;
     }
 
-    public ArrayList<Task> getAllTasks() {
-        return allTasks;
+    public ArrayList<Task> getAllTasks(){return allTasks;}
+
+    public void sortTeamScores(){
+        Map<Member, Integer> sortedMap =
+                scores.entrySet().stream()
+                        .sorted(Map.Entry.comparingByValue())
+                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                                (e1, e2) -> e1, LinkedHashMap::new));
     }
 
     public void addTask(Task task){

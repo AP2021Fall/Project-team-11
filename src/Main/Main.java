@@ -25,5 +25,6 @@ public class Main {
     }
     public static Matcher getMatcher(String command, String regex) {
         return Pattern.compile(regex).matcher(command);
+    }
 
 }
