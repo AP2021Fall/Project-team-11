@@ -9,7 +9,7 @@ public class Task implements Comparable{
     private String description;
     private Date startTime;
     private Date deadline;
-    private ArrayList<User>  assignedUsers = new ArrayList<>();
+    private ArrayList<Member> assignedMembers = new ArrayList<>();
     private ArrayList<String> comments = new ArrayList<>();
     private Team taskTeam;
     private static int lastId;
@@ -52,8 +52,8 @@ public class Task implements Comparable{
         return deadline;
     }
 
-    public ArrayList<User> getAssignedUsers() {
-        return assignedUsers;
+    public ArrayList<Member> getAssignedMembers() {
+        return assignedMembers;
     }
 
     public ArrayList<String> getComments() {
@@ -80,16 +80,9 @@ public class Task implements Comparable{
         this.deadline = deadline;
     }
 
-    public void setAssignedUsers(ArrayList<User> assignedUsers) {
-        this.assignedUsers = assignedUsers;
-    }
 
     public void setComments(ArrayList<String> comments) {
         this.comments = comments;
-    }
-
-    public static void setAllTasks(ArrayList<Task> allTasks) {
-        Task.allTasks = allTasks;
     }
 
     public static Task getTaskById(int id) {
@@ -115,12 +108,12 @@ public class Task implements Comparable{
         getTaskById(id).deadline = newDeadline;
     }
 
-    public void removeUsers(int id, String username){
-        getTaskById(id).assignedUsers.remove(User.getUserWithUserName(username));
+    public void removeMember(Member member){
+        assignedMembers.remove(member);
     }
 
-    public void addUser(int id, String username){
-        getTaskById(id).assignedUsers.add(User.getUserWithUserName(username));
+    public void addMember(Member member){
+        assignedMembers.add(member);
     }
 
     public static Task getTaskByTitle(String title){

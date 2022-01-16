@@ -12,4 +12,8 @@ public class Member extends User{
     public Member(String username, String password, String emailAddress) {
         super(username, password, emailAddress);
     }
+
+    public void addTask(Task task){
+        tasks.add(task);
+    }
 }

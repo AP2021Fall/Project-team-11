@@ -49,8 +49,9 @@ public class MainMenuController {
         Date startDate = new Date(startTime);
         Date endDate = new Date(deadline);
         MainMenuView.getSelectedTeam().addTask(new Task(title,startDate,endDate,MainMenuView.getSelectedTeam()));
-        return "Task created successfully!";
 
+        return "Task created successfully!";
+// It's not necessary right now, but I should probably add task to all tasks
 
     }
 
@@ -65,11 +66,24 @@ public class MainMenuController {
     }
 
     public String deleteMember(String username) {
-        User member = User.getUserWithUserName(username);
-        if(!(member instanceof Member))
+        Member member = MainMenuView.getSelectedTeam().getMembersWithUsername(username);
+        if(member == null)
             return "No user exists with this username !";
-        MainMenuView.getSelectedTeam().deleteMember((Member) member);
+        MainMenuView.getSelectedTeam().deleteMember(member);
         member.deleteTeam(MainMenuView.getSelectedTeam());
         return "Member deleted successfully !";
+    }
+
+    public String assignTask(String id, String username) {
+        Member member = MainMenuView.getSelectedTeam().getMembersWithUsername(username);
+        Task task = MainMenuView.getSelectedTeam().getTaskWithId(Integer.parseInt(id));
+        if(member == null)
+            return "No user exists with this username !";
+        if(task == null)
+            return "No Task exists with this id!";
+        member.addTask(task);
+        task.addMember(member);
+        return "Member Assigned Successfully!";
+
     }
 }

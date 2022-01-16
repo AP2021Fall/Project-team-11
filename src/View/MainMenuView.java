@@ -90,8 +90,14 @@ public class MainMenuView {
                     if(input.startsWith("delete member")){
                         System.out.println(controller.deleteMember(splitInput[3]));
                     }
+
+                    if(input.startsWith("assign member")){
+                        System.out.println(controller.assignTask(splitInput[3],splitInput[5]));
+                    }
                 }
             }
+
+
 
 
             else if(input.equals("logout")){

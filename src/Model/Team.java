@@ -86,5 +86,19 @@ public class Team {
         allTasks.add(task);
     }
 
+    public Member getMembersWithUsername(String username){
+        for (Member member : scores.keySet()) {
+            if(member.getUsername().equals(username))
+                return member;
+        }
+        return null;
+    }
 
+    public Task getTaskWithId(int id){
+        for (Task task : allTasks) {
+            if(task.getId() == id)
+                return task;
+        }
+        return null;
+    }
 }
