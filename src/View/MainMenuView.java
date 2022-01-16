@@ -3,9 +3,12 @@ package View;
 import Controller.MainMenuController;
 import Main.Main;
 import Model.Leader;
+import Model.Task;
 import Model.Team;
 import Model.User;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class MainMenuView {
@@ -60,6 +63,25 @@ public class MainMenuView {
                 else if(input.startsWith("show --team")){
                     System.out.println(controller.showTeam(splitInput[2]));
                 }
+
+                if(selectedTeam!=null){
+
+                    if(input.startsWith("sudo show")){
+                        ArrayList<Task> tasks= selectedTeam.getAllTasks();
+                        Collections.sort(tasks);
+                        for (Task task : tasks) {
+                            System.out.println(task.getTitle());
+                        }
+                    }
+
+                    if(input.startsWith("create task")){
+                        System.out.println(controller.createTask(splitInput[3],splitInput[5],splitInput[7]));
+                    }
+
+                    if(input.startsWith("show --members")){
+
+                    }
+                }
             }
 
 
@@ -80,6 +102,10 @@ public class MainMenuView {
 
     public static MainMenuView getMainMenuView() {
         return mainMenuView;
+    }
+
+    public static Team getSelectedTeam() {
+        return selectedTeam;
     }
 
     private MainMenuView(){

@@ -1,38 +1,30 @@
 package Model;
 
-
 import java.util.ArrayList;
 
-public class Task {
+public class Task implements Comparable{
     private static ArrayList<Task> allTasks = new ArrayList<>();
     private int id;
     private String title;
     private String description;
-    private TaskPriority priority;
+    private Date startTime;
     private Date deadline;
-    private int progressPercentage;
-
     private ArrayList<User>  assignedUsers = new ArrayList<>();
     private ArrayList<String> comments = new ArrayList<>();
+    private static int lastId;
+
+    @Override
+    public int compareTo(Object o) {
+        return this.startTime.compareTo(((Task)o).startTime);
+    }
 
 
-
-
-
-    public Task(int id, String title, String description, Date dateAndTimeOfCreation, Date dateAndTimeOfDeadline, ArrayList<User> assignedUsers, ArrayList<String> comments) {
-
-        this.id = id;
+    public Task(String title, Date startTime, Date deadline) {
         this.title = title;
-        this.description = description;
-        this.assignedUsers = assignedUsers;
-        this.comments = comments;
-        this.progressPercentage = 0;
+        this.startTime = startTime;
+        this.deadline = deadline;
+        this.id = ++lastId;
     }
-
-    public Task (Date dateAndTimeOfDeadline) {
-        this.deadline = dateAndTimeOfDeadline;
-    }
-    public int getProgressPercentage(){return progressPercentage;}
 
     public static ArrayList<Task> getAllTasks() {
         return allTasks;
@@ -50,6 +42,9 @@ public class Task {
         return description;
     }
 
+    public Date getStartTime() {
+        return startTime;
+    }
 
     public Date getDeadline() {
         return deadline;
@@ -75,6 +70,10 @@ public class Task {
         description = description;
     }
 
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
@@ -97,42 +96,37 @@ public class Task {
         }
         return null;
     }
-    public void updateTitle(String newTitle){
-        this.title = newTitle;
+    public void updateTitle(int id, String newTitle){
+        getTaskById(id).title = newTitle;
     }
 
-    public void updateDescription(String newDescription){
-        this.title = newDescription;
+    public void updateDescription(int id, String newDescription){
+        getTaskById(id).title = newDescription;
     }
 
-    public void updatePriority(String newPriority){
-        if (newPriority.equals("Highest")){
-            this.priority = TaskPriority.Highest;
-        }
-        else if (newPriority.equals("High")){
-            this.priority = TaskPriority.High;
-        }
-        else if (newPriority.equals("Low")){
-            this.priority = TaskPriority.Low;
-        }
-        else if (newPriority.equals("Lowest")){
-            this.priority = TaskPriority.Lowest;
-        }
+    public void updatePriority(int id, String newPriority){
+
+
     }
 
-    public void updateDeadline(int year, int month, int day, int hour, int minute){
-        this.deadline = new Date(year, month, day, hour, minute);
+    public void updateDeadline(int id, Date newDeadline){
+        getTaskById(id).deadline = newDeadline;
     }
 
-    public void removeUser(String username){
-        this.assignedUsers.remove(User.getUserWithUserName(username));
+    public void removeUsers(int id, String username){
+        getTaskById(id).assignedUsers.remove(User.getUserWithUserName(username));
     }
 
-    public void addUser(String username){
-        if (User.getUserWithUserName(username) != null){
-            this.assignedUsers.add(User.getUserWithUserName(username));
+    public void addUser(int id, String username){
+        getTaskById(id).assignedUsers.add(User.getUserWithUserName(username));
+    }
+
+    public static Task getTaskByTitle(String title){
+        for (Task task : allTasks) {
+            if(task.title.equals(title))
+                return task;
         }
-        else System.out.println("There is not any user with this username" + username + "in list! ");
+        return null;
     }
 
 }

@@ -1,10 +1,7 @@
 package Controller;
 
 import Main.Main;
-import Model.Admin;
-import Model.Leader;
-import Model.Team;
-import Model.User;
+import Model.*;
 import View.MainMenuView;
 
 public class MainMenuController {
@@ -37,6 +34,23 @@ public class MainMenuController {
             return "Team not found!";
         MainMenuView.setSelectedTeam(team);
         return "team found!";
+
+    }
+
+    public String createTask(String title, String startTime, String deadline) {
+        Task task = Task.getTaskByTitle(title);
+        if(task!=null)
+            return "There is another task with this title!";
+        if(!startTime.matches("((\\d{4}-\\d{2}-\\d{2})\\|(([0-1]\\d)|(2[0-3])):[0-5]\\d)"))
+            return "Invalid start date!";
+        if(!deadline.matches("((\\d{4}-\\d{2}-\\d{2})\\|(([0-1]\\d)|(2[0-3])):[0-5]\\d)"))
+            return "Invalid deadline!";
+
+        Date startDate = new Date(startTime);
+        Date endDate = new Date(deadline);
+        MainMenuView.getSelectedTeam().addTask(new Task(title,startDate,endDate));
+        return "Task created successfully!";
+
 
     }
 }
