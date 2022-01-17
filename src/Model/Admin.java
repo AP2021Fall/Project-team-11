@@ -18,4 +18,16 @@ public class Admin extends User{
     public static void addPendingTeam(Team team){
         pendingTeams.add(team);
     }
+
+    public static Team getTeamByName(String name){
+        for (Team team : pendingTeams) {
+            if(team.getTeamName().equals(name))
+                return team;
+        }
+        return null;
+    }
+
+    public static void removeTeam(Team team){
+        pendingTeams.remove(team);
+    }
 }

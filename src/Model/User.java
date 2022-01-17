@@ -95,4 +95,22 @@ public class User implements Comparable{
     public void deleteTeam(Team team){
         teams.remove(team);
     }
+
+    public Team getTeamWithTeamName (String teamName){
+        for (Team team : teams) {
+            if(teamName.equals(team.getTeamName()))
+                return team;
+        }
+        return null;
+    }
+
+    public Team getTeamWithId (int id){
+        for (Team team : teams) {
+            if(id == team.getTeamId())
+                return team;
+        }
+        return null;
+    }
+
+
 }

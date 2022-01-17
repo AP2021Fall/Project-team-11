@@ -14,22 +14,22 @@ public class LoginMenuView {
     public void run(){
         while(!(input=scanner.nextLine()).equals("exit")){
             String [] splitInput = input.split(" ");
+            try {
 
-            if(input.startsWith("user create")){
-                System.out.println(controller.createUser(splitInput[3],splitInput[5],splitInput[7],splitInput[9]));
-            }
 
-            else if(input.startsWith("user login")){
-                String out = controller.logInUser(splitInput[3],splitInput[5]);
-                System.out.println(out);
-                if(out.equals("user logged in successfully!")){
-                    MainMenuView.getMainMenuView().run();
+                if (input.startsWith("user create")) {
+                    System.out.println(controller.createUser(splitInput[3], splitInput[5], splitInput[7], splitInput[9]));
+                } else if (input.startsWith("user login")) {
+                    String out = controller.logInUser(splitInput[3], splitInput[5]);
+                    System.out.println(out);
+                    if (out.equals("user logged in successfully!")) {
+                        MainMenuView.getMainMenuView().run();
+                    }
                 }
+                else System.out.println("invalid input");
 
-            }
-
-            else
-                System.out.println("invalid input");
+            }catch (Exception e){
+                System.out.println("invalid input");}
         }
     }
 

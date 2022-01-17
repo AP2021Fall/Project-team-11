@@ -91,22 +91,7 @@ public class Task implements Comparable{
         }
         return null;
     }
-    public void updateTitle(int id, String newTitle){
-        getTaskById(id).title = newTitle;
-    }
 
-    public void updateDescription(int id, String newDescription){
-        getTaskById(id).title = newDescription;
-    }
-
-    public void updatePriority(int id, String newPriority){
-
-
-    }
-
-    public void updateDeadline(int id, Date newDeadline){
-        getTaskById(id).deadline = newDeadline;
-    }
 
     public void removeMember(Member member){
         assignedMembers.remove(member);

@@ -16,8 +16,7 @@ public class Team {
     public Team(String teamName, Leader teamLeader) {
         this.teamName = teamName;
         this.teamLeader = teamLeader;
-        idGenerator++;
-        this.teamId = idGenerator;
+        this.teamId = ++idGenerator;
     }
 
     public static ArrayList<Team> getTeams() {
@@ -100,5 +99,13 @@ public class Team {
                 return task;
         }
         return null;
+    }
+
+    public static void addTeam(Team team){
+        teams.add(team);
+    }
+
+    public int getTeamId() {
+        return teamId;
     }
 }

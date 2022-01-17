@@ -4,6 +4,8 @@ import Main.Main;
 import Model.*;
 import View.MainMenuView;
 
+import java.util.ArrayList;
+
 public class MainMenuController {
 
     public String createTeam(String teamName){
@@ -27,9 +29,9 @@ public class MainMenuController {
         }
         Team team;
         if(flag)
-            team = Team.getTeamWithId(teamId);
+            team = User.getLoggedInUser().getTeamWithId(teamId);
         else
-            team = Team.getTeamWithTeamName(teamIdOrName);
+            team = User.getLoggedInUser().getTeamByTeamName(teamIdOrName);
         if(team == null)
             return "Team not found!";
         MainMenuView.setSelectedTeam(team);
@@ -84,6 +86,60 @@ public class MainMenuController {
         member.addTask(task);
         task.addMember(member);
         return "Member Assigned Successfully!";
+
+    }
+
+    public String acceptTeams(String[] inputs) {
+        ArrayList<Team> teams = new ArrayList<>();
+        for(int i=2;i<inputs.length;i++){
+            Team team = Admin.getTeamByName(inputs[i]);
+            if(team == null)
+                return "Some teams are not in pending status! Try again";
+            teams.add(team);
+        }
+        for (Team team : teams) {
+            Team.addTeam(team);
+            team.getTeamLeader().addTeam(team);
+            Admin.removeTeam(team);
+        }
+        return "Accepted pending teams !";
+    }
+
+    public String rejectTeams(String[] inputs){
+        ArrayList<Team> teams = new ArrayList<>();
+        for(int i=2;i<inputs.length;i++){
+            Team team = Admin.getTeamByName(inputs[i]);
+            if(team == null)
+                return "Some teams are not in pending status! Try again";
+            teams.add(team);
+        }
+        for (Team team : teams) {
+            Admin.removeTeam(team);
+        }
+
+        return "Rejected pending teams !";
+    }
+
+    public String changeRole(String username, String role) {
+        User user = User.getUserWithUserName(username);
+        if(user == null || user.equals(User.getLoggedInUser()))
+            return "There is no user with this username";
+        if(!role.equalsIgnoreCase("Member") || !role.equalsIgnoreCase("Leader"))
+            return "Invalid role";
+        if(user instanceof Member && role.equalsIgnoreCase("Member") || user instanceof Leader && role.equalsIgnoreCase("Leader"))
+            return "User already have this role";
+        if(user instanceof Member){
+            User.getUsers().remove(user);
+            User.getUsers().add(new Leader(user.getUsername(),user.getPassword(),user.getEmailAddress()));
+            for (Team team : user.getTeams()) {
+                team.deleteMember((Member) user);
+            }
+            for (Task task : user.getTasks()) {
+                task.removeMember((Member) user);
+            }
+            user.getTeams().clear();
+            user.getTasks().clear();
+        }
 
     }
 }

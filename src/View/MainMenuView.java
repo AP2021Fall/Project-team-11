@@ -97,7 +97,29 @@ public class MainMenuView {
                 }
             }
 
+            if(User.getLoggedInUser() instanceof Admin){
+                String[] splitInput = input.split(" ");
 
+                if(input.equals("show --pendingTeams")){
+                    ArrayList<Team> teams = Admin.getPendingTeams();
+                    if(teams.isEmpty())
+                        System.out.println("There are no Teams in Pending Status!");
+                    for(int i= teams.size()-1; i>=0 ; i--)
+                        System.out.println(teams.get(i).getTeamName());
+                }
+
+                if(input.startsWith("accept --teams")){
+                    System.out.println(controller.acceptTeams(splitInput));
+                }
+
+                if(input.startsWith("reject --teams")){
+                    System.out.println(controller.rejectTeams(splitInput));
+                }
+
+                if(input.startsWith("change role")){
+                    System.out.println(controller.changeRole(splitInput[2],splitInput[4]));
+                }
+            }
 
 
             else if(input.equals("logout")){

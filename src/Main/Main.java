@@ -1,5 +1,7 @@
 package Main;
 
+import Model.Admin;
+import Model.User;
 import View.LoginMenuView;
 
 import java.util.Scanner;
@@ -11,6 +13,7 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         System.out.println("welcome sry I dont know the current version");
+        User.getUsers().add(new Admin("Admin","123456","admin@gmail.com"));
         LoginMenuView.getLoginMenuView().run();
     }
 
