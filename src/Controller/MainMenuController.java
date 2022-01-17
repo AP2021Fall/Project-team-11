@@ -140,6 +140,7 @@ public class MainMenuController {
             user.getTeams().clear();
             user.getTasks().clear();
         }
+        return "Role changed successfully";
 
     }
 }
