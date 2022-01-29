@@ -5,7 +5,19 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_29_2022_2_33_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_29_2022_2_33_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Controller/CalenderMenuController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Controller/LoginMenuController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Controller/MainMenuController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Controller/NotificationBarController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Controller/ProfileMenuController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Controller/TaskPageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Controller/TeamMenuController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Main/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Model/Admin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Model/Leader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Model/Member.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Model/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TaskPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TaskPageController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +59,7 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main.Main" />
-      <module name="JIRA" />
+      <module name="Project-team-11a" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="Main.*" />
