@@ -4,49 +4,84 @@ import Controller.LoginMenuController;
 import Main.Main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import Controller.TeamMenuController;
 import Main.Main;
 import Model.Team;
+import Model.User;
 
 public class TeamMenuView {
     private Team selectedTeam;
+    
     private static TeamMenuView teamMenuView = new TeamMenuView();
     TeamMenuController controller = new TeamMenuController();
     Scanner scanner = Main.getScanner();
     String input;
     public void run(){
+        System.out.println("TEAM MENU");
+        System.out.println("Your selected Team is :" + selectedTeam.getTeamName());
+        ArrayList<Team> userTeams = User.getLoggedInUser().getTeams();
+                    for(int i = 0 ; i < userTeams.size(); i++){
+                        System.out.println((i+1) + " " + userTeams.get(i).getTeamName());
+                    }
         while(!(input=scanner.nextLine()).equals("exit")){
             String [] splitInput = input.split(" ");
+
             try {
 
-                if (input.startsWith("Scoreboard")) {
-                    ArrayList<String> output = controller.scoreBoard(selectedTeam); //team
+                if (input.equals("Scoreboard --show") && (selectedTeam) != null) {
+                    ArrayList<String> output = controller.scoreBoard(selectedTeam); 
                     for(int i = 0 ; i < output.size();i++) {
                         System.out.println((i + 1) + output.get(i) + "\n");
                     }
-                } else if (input.startsWith("Roadmap")) {
-                    ArrayList<String> output = controller.scoreBoard(selectedTeam); //team
-                    for (int i = 0 ; i < output.size() ; i++){
-                        System.out.println((i+1)+ output.get(i) + "\n");
+                } else if (input.equals("Roadmap --show") && (selectedTeam) != null) {
+                    ArrayList<String> output = controller.roadMap(selectedTeam);
+                    if(output != null){
+                        for (int i = 0 ; i < output.size() ; i++){
+                            System.out.println((i+1)+ output.get(i) + "\n");
+                        }
                     }
-                }
-                else System.out.println("invalid input");
+                    else{
+                    System.out.println("no task yet");
+                    }
+                } else if(input.startsWith("Enter team")){
+                    String name = splitInput[2];
+                    selectedTeam = Team.getTeamWithTeamName(name);
+                    if(selectedTeam == null){
+                        System.out.println("Invalid Team name");
+                    }else{
+                        System.out.println("Selected team succussfully changed to :" + selectedTeam.getTeamName());
+                    }
+
+                }else if(input.equals("Chatroom --show") && (selectedTeam) != null){
+                    Map<String , User> allChats = new HashMap<>(selectedTeam.getChats());
+                    for(String chat : allChats.keySet()){
+                        System.out.println(allChats.get(chat) +" : " + chat);
+                    }
+                    if (allChats.size() == 0){
+                        System.out.println("no message yet");}
+                }else if(input.startsWith("send --message")){
+                    String chatText = "";
+                    for(int i = 2 ; i < splitInput.length ; i++)
+                        chatText += " " + splitInput[i];
+                    selectedTeam.addChats(chatText, User.getLoggedInUser());
+
+                    Map<String , User> allChats = new HashMap<>(selectedTeam.getChats());
+                    for(String chat : allChats.keySet()){
+                        System.out.println(allChats.get(chat) +" : " + chat);
+                    }
+                }else if(input.equals("show tasks") && (selectedTeam) != null){
+
+                    // need sorted tasks
+                    }
+                else System.out.println("not doable , due to unacceptable selected team or invalid command");
 
             }catch (Exception e){
                 System.out.println("invalid input");}
         }
 
-    }
-    public void scoreBoardView(ArrayList<String> output){
-        for(int i = 0 ; i < output.size();i++){
-            System.out.println((i+1)+ output.get(i) +"\n");
-        }
-    }
-    public void roadMapView(ArrayList<String> output){
-        for (int i = 0 ; i < output.size() ; i++){
-            System.out.println((i+1)+ output.get(i) + "\n");
-        }
     }
 
     public static TeamMenuView getTeamMenuView() {
@@ -57,3 +92,4 @@ public class TeamMenuView {
 
     }
 }
+

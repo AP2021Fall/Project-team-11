@@ -10,7 +10,7 @@ public class Task {
     private String description;
     private TaskPriority priority;
     private Date deadline;
-
+    private int progressPercentage = 0;
     private ArrayList<User>  assignedUsers = new ArrayList<>();
     private ArrayList<String> comments = new ArrayList<>();
 
@@ -37,6 +37,10 @@ public class Task {
 
     public int getId() {
         return id;
+    }
+
+    public int getProgressPercentage(){
+        return progressPercentage;
     }
 
     public String getTitle() {
