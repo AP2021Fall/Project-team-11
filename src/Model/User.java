@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class User implements Comparable{
-    public static boolean isLeader;
+    public boolean isLeader;
     protected static ArrayList<User> users = new ArrayList<>();
     private static User loggedInUser;
     protected String username;

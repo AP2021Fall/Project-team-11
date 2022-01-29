@@ -13,6 +13,7 @@ public class Task implements Comparable{
     private ArrayList<String> comments = new ArrayList<>();
     private Team taskTeam;
     private static int lastId;
+    private int progressPercentage;
 
     @Override
     public int compareTo(Object o) {
@@ -109,4 +110,7 @@ public class Task implements Comparable{
         return null;
     }
 
+    public int getProgressPercentage() {
+        return progressPercentage;
+    }
 }

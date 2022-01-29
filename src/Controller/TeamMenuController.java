@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TeamMenuController {
+    private static Team selectedTeam ;
+
+    public static void getSelectedTeam(Team team){
+        selectedTeam = team;
+    }
 
     public ArrayList<String> scoreBoard(Team team){
         HashMap <Member , Integer> scores= team.getTeamMembersScores();
@@ -17,13 +22,14 @@ public class TeamMenuController {
         }
         return output;
     }
-//commented for now because of errors
-/*    public ArrayList<String> roadMap(Team team){
+   public ArrayList<String> roadMap(Team team){
         ArrayList<String> output = new ArrayList<>();
         for (Task task : team.getAllTasks() ){
             output.add(task.getTitle() + " : " + task.getProgressPercentage() +"% done");
         }
         return output;
-    }*/
+    }
+
+
 
 }
