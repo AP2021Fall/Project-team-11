@@ -47,23 +47,10 @@ public class Board {
 
     public void setActiveBoard(Board board){activeBoard = board;}
 
-    public String getName(){return this.name;}
+    public static Board getActiveBoard(){return activeBoard;}
 
-    public String addCategory(String name , int column){
-        Category category = getCategoryByName(name);
-        if (category.equals(null)){
-            //view handler
-            return "NO Category with this name";
-        }
-        else {
-            try {
-                this.categories.add(column - 1,category);
-            }catch (Exception e){
-                return "Wrong column";
-            }
-        }
-        return "Category" + name + " added to column" + column;
-    }
+
+    public String getName(){return this.name;}
 
     public Category getCategoryByName(String name){
         for (Category category : this.getCategories()){
@@ -73,23 +60,5 @@ public class Board {
         }
         return null;
     }
-
-}
-
-class Category{
-    private static int idGenerator = 1;
-    private final int id;
-    private final String name;
-    ArrayList<Task> tasks = new ArrayList<>();
-
-
-    public Category(String name ,Board board){
-        this.name = name;
-        this.id = idGenerator++;
-    }
-
-    public void assignTask(Task task){this.tasks.add(task);}
-
-    public String getName(){return name;}
 
 }
