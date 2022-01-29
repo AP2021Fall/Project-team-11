@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 public class Team {
     private static ArrayList<Team> teams = new ArrayList<>();
+    private ArrayList<Board> boards = new ArrayList<>();
     private String teamName;
     private int teamId;
     private Leader teamLeader;
@@ -91,6 +92,11 @@ public class Team {
                 return member;
         }
         return null;
+    }
+
+
+    public void createBoard(){
+
     }
 
     public Task getTaskWithId(int id){

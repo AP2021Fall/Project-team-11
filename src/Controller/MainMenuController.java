@@ -36,7 +36,6 @@ public class MainMenuController {
             return "Team not found!";
         MainMenuView.setSelectedTeam(team);
         return "team found!";
-
     }
 
     public String createTask(String title, String startTime, String deadline) {
