@@ -1,32 +1,34 @@
 package Model;
 
+
 import java.util.ArrayList;
 
-public class Task implements Comparable{
+public class Task {
     private static ArrayList<Task> allTasks = new ArrayList<>();
     private int id;
     private String title;
     private String description;
-    private Date startTime;
+    private TaskPriority priority;
     private Date deadline;
-    private ArrayList<Member> assignedMembers = new ArrayList<>();
-    private ArrayList<String> comments = new ArrayList<>();
-    private Team taskTeam;
-    private static int lastId;
-    private int progressPercentage;
 
-    @Override
-    public int compareTo(Object o) {
-        return this.startTime.compareTo(((Task)o).startTime);
+    private ArrayList<User>  assignedUsers = new ArrayList<>();
+    private ArrayList<String> comments = new ArrayList<>();
+
+
+
+
+
+    public Task(int id, String title, String description, Date dateAndTimeOfCreation, Date dateAndTimeOfDeadline, ArrayList<User> assignedUsers, ArrayList<String> comments) {
+
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.assignedUsers = assignedUsers;
+        this.comments = comments;
     }
 
-
-    public Task(String title, Date startTime, Date deadline, Team taskTeam) {
-        this.title = title;
-        this.startTime = startTime;
-        this.deadline = deadline;
-        this.id = ++lastId;
-        this.taskTeam=taskTeam;
+    public Task (Date dateAndTimeOfDeadline) {
+        this.deadline = dateAndTimeOfDeadline;
     }
 
     public static ArrayList<Task> getAllTasks() {
@@ -45,16 +47,13 @@ public class Task implements Comparable{
         return description;
     }
 
-    public Date getStartTime() {
-        return startTime;
-    }
 
     public Date getDeadline() {
         return deadline;
     }
 
-    public ArrayList<Member> getAssignedMembers() {
-        return assignedMembers;
+    public ArrayList<User> getAssignedUsers() {
+        return assignedUsers;
     }
 
     public ArrayList<String> getComments() {
@@ -73,17 +72,20 @@ public class Task implements Comparable{
         description = description;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
 
+    public void setAssignedUsers(ArrayList<User> assignedUsers) {
+        this.assignedUsers = assignedUsers;
+    }
 
     public void setComments(ArrayList<String> comments) {
         this.comments = comments;
+    }
+
+    public static void setAllTasks(ArrayList<Task> allTasks) {
+        Task.allTasks = allTasks;
     }
 
     public static Task getTaskById(int id) {
@@ -92,25 +94,42 @@ public class Task implements Comparable{
         }
         return null;
     }
-
-
-    public void removeMember(Member member){
-        assignedMembers.remove(member);
+    public void updateTitle(String newTitle){
+        this.title = newTitle;
     }
 
-    public void addMember(Member member){
-        assignedMembers.add(member);
+    public void updateDescription(String newDescription){
+        this.title = newDescription;
     }
 
-    public static Task getTaskByTitle(String title){
-        for (Task task : allTasks) {
-            if(task.title.equals(title))
-                return task;
+    public void updatePriority(String newPriority){
+        if (newPriority.equals("Highest")){
+            this.priority = TaskPriority.Highest;
         }
-        return null;
+        else if (newPriority.equals("High")){
+            this.priority = TaskPriority.High;
+        }
+        else if (newPriority.equals("Low")){
+            this.priority = TaskPriority.Low;
+        }
+        else if (newPriority.equals("Lowest")){
+            this.priority = TaskPriority.Lowest;
+        }
     }
 
-    public int getProgressPercentage() {
-        return progressPercentage;
+    public void updateDeadline(int year, int month, int day, int hour, int minute){
+        this.deadline = new Date(year, month, day, hour, minute);
     }
+
+    public void removeUser(String username){
+        this.assignedUsers.remove(User.getUserWithUserName(username));
+    }
+
+    public void addUser(String username){
+        if (User.getUserWithUserName(username) != null){
+            this.assignedUsers.add(User.getUserWithUserName(username));
+        }
+        else System.out.println("There is not any user with this username" + username + "in list! ");
+    }
+
 }

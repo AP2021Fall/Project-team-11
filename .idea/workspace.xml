@@ -1,23 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="664ac78c-05db-4f72-a90a-00de848a93e5" name="Changes" comment="ok">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_29_2022_2_33_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_29_2022_2_33_PM__Changes_.xml" afterDir="false" />
+    <list default="true" id="664ac78c-05db-4f72-a90a-00de848a93e5" name="Changes" comment="taskpage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Controller/CalenderMenuController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Controller/LoginMenuController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Controller/MainMenuController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Controller/NotificationBarController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Controller/ProfileMenuController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Controller/TaskPageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Controller/TeamMenuController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Main/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Model/Admin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Model/Leader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Model/Member.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JIRA/Model/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TaskPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TaskPageController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643454284880</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="taskpage">
+      <created>1643470997932</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1643470997932</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,6 +266,7 @@
     <MESSAGE value="leader commands kinda finished" />
     <MESSAGE value="Crucial Admin stuff" />
     <MESSAGE value="ok" />
-    <option name="LAST_COMMIT_MESSAGE" value="ok" />
+    <MESSAGE value="taskpage" />
+    <option name="LAST_COMMIT_MESSAGE" value="taskpage" />
   </component>
 </project>

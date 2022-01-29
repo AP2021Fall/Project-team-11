@@ -1,5 +1,4 @@
 package Controller;
-import Model.Leader;
 import Model.Task;
 import Model.User;
 import java.util.regex.Matcher;
@@ -22,7 +21,7 @@ public class TaskPageController {
         help();
         while (true){
             command = getScanner().nextLine();
-            if (User instanceof Leader){
+            if (User.getLoggedInUser().isLeader){
                 if (command.matches(BACK_PATTERN)){
                     return;
                 }
@@ -55,12 +54,12 @@ public class TaskPageController {
                 }
                 else if (command.matches(ASSIGNED_USERS_ADD_PATTERN)){
                     taskPageWithID(getMatcher(command, ASSIGNED_USERS_ADD_PATTERN));
-                    theTask.addMember(getUsername(getMatcher(command, ASSIGNED_USERS_ADD_PATTERN)));
+                    theTask.addUser(getUsername(getMatcher(command, ASSIGNED_USERS_ADD_PATTERN)));
                     System.out.println("User"+ getUsername(getMatcher(command, ASSIGNED_USERS_REMOVE_PATTERN))+"added successfully!");
                 }
                 else if (command.matches(ASSIGNED_USERS_REMOVE_PATTERN)){
                     taskPageWithID(getMatcher(command, ASSIGNED_USERS_REMOVE_PATTERN));
-                    theTask.removeMember(getUsername(getMatcher(command, ASSIGNED_USERS_REMOVE_PATTERN)));
+                    theTask.removeUser(getUsername(getMatcher(command, ASSIGNED_USERS_REMOVE_PATTERN)));
                     System.out.println("User"+ getUsername(getMatcher(command, ASSIGNED_USERS_REMOVE_PATTERN))+"removed successfully!");
                 }
                 else System.out.println(INVALID_COMMAND_PROMPT);
