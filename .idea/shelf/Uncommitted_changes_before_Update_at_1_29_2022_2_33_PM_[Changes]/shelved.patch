@@ -1,0 +1,53 @@
+Index: src/Controller/TeamMenuController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Controller;\r\n\r\nimport Model.Member;\r\nimport Model.Task;\r\nimport Model.Team;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.HashMap;\r\n\r\npublic class TeamMenuController {\r\n\r\n    public ArrayList<String> scoreBoard(Team team){\r\n        HashMap <Member , Integer> scores= team.getTeamMembersScores();\r\n        ArrayList<String> output = new ArrayList<>();\r\n        for (Member member: scores.keySet()) {\r\n            output.add(member.getUsername() + \" : \"+ scores.get(member));\r\n        }\r\n        return output;\r\n    }\r\n//commented for now because of errors\r\n/*    public ArrayList<String> roadMap(Team team){\r\n        ArrayList<String> output = new ArrayList<>();\r\n        for (Task task : team.getAllTasks() ){\r\n            output.add(task.getTitle() + \" : \" + task.getProgressPercentage() +\"% done\");\r\n        }\r\n        return output;\r\n    }*/\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Controller/TeamMenuController.java b/src/Controller/TeamMenuController.java
+--- a/src/Controller/TeamMenuController.java	(revision 8e9a485760fda0f45c2f77f60fe7b36cd81cb02d)
++++ b/src/Controller/TeamMenuController.java	(date 1642411268032)
+@@ -17,13 +17,13 @@
+         }
+         return output;
+     }
+-//commented for now because of errors
+-/*    public ArrayList<String> roadMap(Team team){
++
++    public ArrayList<String> roadMap(Team team){
+         ArrayList<String> output = new ArrayList<>();
+         for (Task task : team.getAllTasks() ){
+             output.add(task.getTitle() + " : " + task.getProgressPercentage() +"% done");
+         }
+         return output;
+-    }*/
++    }
+ 
+ }
+Index: src/Model/Task.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Model;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class Task implements Comparable{\r\n    private static ArrayList<Task> allTasks = new ArrayList<>();\r\n    private int id;\r\n    private String title;\r\n    private String description;\r\n    private Date startTime;\r\n    private Date deadline;\r\n    private ArrayList<Member> assignedMembers = new ArrayList<>();\r\n    private ArrayList<String> comments = new ArrayList<>();\r\n    private Team taskTeam;\r\n    private static int lastId;\r\n\r\n    @Override\r\n    public int compareTo(Object o) {\r\n        return this.startTime.compareTo(((Task)o).startTime);\r\n    }\r\n\r\n\r\n    public Task(String title, Date startTime, Date deadline, Team taskTeam) {\r\n        this.title = title;\r\n        this.startTime = startTime;\r\n        this.deadline = deadline;\r\n        this.id = ++lastId;\r\n        this.taskTeam=taskTeam;\r\n    }\r\n\r\n    public static ArrayList<Task> getAllTasks() {\r\n        return allTasks;\r\n    }\r\n\r\n    public int getId() {\r\n        return id;\r\n    }\r\n\r\n    public String getTitle() {\r\n        return title;\r\n    }\r\n\r\n    public String getDescription() {\r\n        return description;\r\n    }\r\n\r\n    public Date getStartTime() {\r\n        return startTime;\r\n    }\r\n\r\n    public Date getDeadline() {\r\n        return deadline;\r\n    }\r\n\r\n    public ArrayList<Member> getAssignedMembers() {\r\n        return assignedMembers;\r\n    }\r\n\r\n    public ArrayList<String> getComments() {\r\n        return comments;\r\n    }\r\n\r\n    public void setId(int id) {\r\n        this.id = id;\r\n    }\r\n\r\n    public void setTitle(String title) {\r\n        this.title = title;\r\n    }\r\n\r\n    public void setDescription(String description) {\r\n        description = description;\r\n    }\r\n\r\n    public void setStartTime(Date startTime) {\r\n        this.startTime = startTime;\r\n    }\r\n\r\n    public void setDeadline(Date deadline) {\r\n        this.deadline = deadline;\r\n    }\r\n\r\n\r\n    public void setComments(ArrayList<String> comments) {\r\n        this.comments = comments;\r\n    }\r\n\r\n    public static Task getTaskById(int id) {\r\n        for (Task task : allTasks) {\r\n            if (task.id == id) return task;\r\n        }\r\n        return null;\r\n    }\r\n\r\n\r\n    public void removeMember(Member member){\r\n        assignedMembers.remove(member);\r\n    }\r\n\r\n    public void addMember(Member member){\r\n        assignedMembers.add(member);\r\n    }\r\n\r\n    public static Task getTaskByTitle(String title){\r\n        for (Task task : allTasks) {\r\n            if(task.title.equals(title))\r\n                return task;\r\n        }\r\n        return null;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Model/Task.java b/src/Model/Task.java
+--- a/src/Model/Task.java	(revision 8e9a485760fda0f45c2f77f60fe7b36cd81cb02d)
++++ b/src/Model/Task.java	(date 1642411268027)
+@@ -13,6 +13,7 @@
+     private ArrayList<String> comments = new ArrayList<>();
+     private Team taskTeam;
+     private static int lastId;
++    private int progressPercentage;
+ 
+     @Override
+     public int compareTo(Object o) {
+@@ -109,4 +110,7 @@
+         return null;
+     }
+ 
++    public int getProgressPercentage() {
++        return progressPercentage;
++    }
+ }

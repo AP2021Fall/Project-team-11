@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7b3a9374-2e5b-4cb1-bbdb-0305a22d11a0" name="Changes" comment="ok" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="21uyR2txMIvcLoHGa3Wxj8nT7d2" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main.Main" />
+      <module name="JIRA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7b3a9374-2e5b-4cb1-bbdb-0305a22d11a0" name="Changes" comment="" />
+      <created>1638805255740</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1638805255740</updated>
+      <workItem from="1638805257061" duration="1735000" />
+      <workItem from="1639230341768" duration="9342000" />
+      <workItem from="1639290220078" duration="396000" />
+      <workItem from="1639290632536" duration="4071000" />
+      <workItem from="1639581360238" duration="5427000" />
+      <workItem from="1639630417264" duration="1243000" />
+      <workItem from="1640614027095" duration="767000" />
+      <workItem from="1641837960392" duration="3262000" />
+      <workItem from="1641912277421" duration="314000" />
+      <workItem from="1641919065447" duration="574000" />
+      <workItem from="1642000403134" duration="11000" />
+      <workItem from="1642086078237" duration="1167000" />
+      <workItem from="1642160656475" duration="8000" />
+      <workItem from="1642317346118" duration="26953000" />
+      <workItem from="1642490370992" duration="57000" />
+      <workItem from="1642590247967" duration="105000" />
+      <workItem from="1642775707601" duration="79000" />
+      <workItem from="1643453002674" duration="1059000" />
+      <workItem from="1643454197008" duration="144000" />
+      <workItem from="1643454353811" duration="92000" />
+    </task>
+    <task id="LOCAL-00001" summary="main">
+      <created>1638805425510</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1638805425510</updated>
+    </task>
+    <task id="LOCAL-00002" summary="main">
+      <created>1638805529371</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1638805529371</updated>
+    </task>
+    <task id="LOCAL-00003" summary="basics">
+      <created>1639230615136</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1639230615136</updated>
+    </task>
+    <task id="LOCAL-00004" summary="create user">
+      <created>1639234030523</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1639234030523</updated>
+    </task>
+    <task id="LOCAL-00005" summary="login user">
+      <created>1639235234527</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1639235234527</updated>
+    </task>
+    <task id="LOCAL-00006" summary="login user">
+      <created>1639237786090</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1639237786090</updated>
+    </task>
+    <task id="LOCAL-00007" summary="MainMenu">
+      <created>1639237812173</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1639237812173</updated>
+    </task>
+    <task id="LOCAL-00008" summary="more classes">
+      <created>1639239409710</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1639239409710</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Profile --change">
+      <created>1639292862499</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1639292862499</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Profile">
+      <created>1639294701002</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1639294701002</updated>
+    </task>
+    <task id="LOCAL-00011" summary="agha ali 2">
+      <created>1639588743494</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1639588743494</updated>
+    </task>
+    <task id="LOCAL-00012" summary="CalendarMenuController : changed&#10;Date : changed&#10;User : added getter and array list for tasks.">
+      <created>1641839499654</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1641839499654</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Main Menu Team Leader">
+      <created>1642326838754</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1642326838754</updated>
+    </task>
+    <task id="LOCAL-00014" summary="team and stuff">
+      <created>1642327873581</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1642327873581</updated>
+    </task>
+    <task id="LOCAL-00015" summary="stuff">
+      <created>1642333212367</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1642333212367</updated>
+    </task>
+    <task id="LOCAL-00016" summary="leader commands kinda finished">
+      <created>1642361565751</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1642361565751</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Crucial Admin stuff">
+      <created>1642410545603</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1642410545603</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Crucial Admin stuff">
+      <created>1642410587414</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1642410587414</updated>
+    </task>
+    <task id="LOCAL-00019" summary="ok">
+      <created>1643454284880</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1643454284880</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="main" />
+    <MESSAGE value="basics" />
+    <MESSAGE value="create user" />
+    <MESSAGE value="login user" />
+    <MESSAGE value="MainMenu" />
+    <MESSAGE value="more classes" />
+    <MESSAGE value="Profile --change" />
+    <MESSAGE value="Profile" />
+    <MESSAGE value="agha ali 2" />
+    <MESSAGE value="CalendarMenuController : changed&#10;Date : changed&#10;User : added getter and array list for tasks." />
+    <MESSAGE value="Main Menu Team Leader" />
+    <MESSAGE value="team and stuff" />
+    <MESSAGE value="stuff" />
+    <MESSAGE value="leader commands kinda finished" />
+    <MESSAGE value="Crucial Admin stuff" />
+    <MESSAGE value="ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="ok" />
+  </component>
+</project>
