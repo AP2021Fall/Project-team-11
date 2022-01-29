@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7b3a9374-2e5b-4cb1-bbdb-0305a22d11a0" name="Changes" comment="ok" />
+    <list default="true" id="664ac78c-05db-4f72-a90a-00de848a93e5" name="Changes" comment="ok">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_29_2022_2_33_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_29_2022_2_33_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,7 +67,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7b3a9374-2e5b-4cb1-bbdb-0305a22d11a0" name="Changes" comment="" />
+      <changelist id="664ac78c-05db-4f72-a90a-00de848a93e5" name="Changes" comment="ok" />
       <created>1638805255740</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -87,6 +92,7 @@
       <workItem from="1643453002674" duration="1059000" />
       <workItem from="1643454197008" duration="144000" />
       <workItem from="1643454353811" duration="92000" />
+      <workItem from="1643455426459" duration="825000" />
     </task>
     <task id="LOCAL-00001" summary="main">
       <created>1638805425510</created>
