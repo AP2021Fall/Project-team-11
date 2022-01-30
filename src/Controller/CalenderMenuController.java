@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class CalenderMenuController {
-    public ArrayList<String> getFormattedDeadlines (){
+    public static ArrayList<String> getFormattedDeadlines (){
         ArrayList<Task>  userTasks= User.getLoggedInUser().getTasks() ;
         ArrayList<String> formattedDeadlines = new ArrayList<String>();
         for (Task task: userTasks) {
@@ -17,7 +17,7 @@ public class CalenderMenuController {
         return formattedDeadlines;
     }
 
-    private String formatDeadline(Date date){
+    private static String formatDeadline(Date date){
         String deadline = date.getYear() + "-" + date.getMonth() + "-" + date.getDay() + "__remaining days: ";
         String timeDifferenceBetweenNowAndDeadline = date.timeDifferenceWithLive(date);
         Pattern timePattern = Pattern.compile("^([0-9]{1,3})-([0-9]{1,2})-([0-9]{1,2})$");
