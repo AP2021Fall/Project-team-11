@@ -11,6 +11,7 @@ public class CalenderMenuView {
     Scanner scanner = Main.getScanner();
     CalenderMenuController controller = new CalenderMenuController();
     public void run(){
+        System.out.println("Welcome to Calender Menu");
         String input;
         while(!(input = scanner.nextLine()).equals("back")){
             if(input.equals("calendar --show deadlines")){

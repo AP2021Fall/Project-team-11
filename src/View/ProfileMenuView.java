@@ -13,6 +13,7 @@ public class ProfileMenuView {
     Scanner scanner = Main.getScanner();
     ProfileMenuController controller = new ProfileMenuController();
     public void run(){
+        System.out.println("Welcome to Profile Menu");
         String input;
         while(!(input = scanner.nextLine()).equals("back")){
             String[] splitInput = input.split(" ");

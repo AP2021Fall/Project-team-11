@@ -16,6 +16,12 @@ public class MainMenuView {
     private static Team selectedTeam;
     String input;
     public void run(){
+        System.out.println("Welcome to Main Menu");
+        System.out.println("Available Menus:\n" +
+                "Profile Menu\n" +
+                "Team Menu\n" +
+                "Task Page\n" +
+                "Calendar Menu");
         while(!(input = scanner.nextLine()).isEmpty()){
             if(input.startsWith("enter menu")) {
                 String menuName = input.split(" ")[2];
