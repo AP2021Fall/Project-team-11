@@ -90,7 +90,10 @@ public class Team {
         return null;
     }
 
-    public ArrayList<Task> getAllTasks(){return allTasks;}
+    public ArrayList<Task> getAllTasks(){
+        Collections.sort(allTasks);
+        return allTasks;
+    }
 
     public void sortTeamScores(){
         Map<Member, Integer> sortedMap =
@@ -132,4 +135,13 @@ public class Team {
     public int getTeamId() {
         return teamId;
     }
+
+    public Task getTaskByTitle(String title){
+        for (Task task : allTasks) {
+            if(task.getTitle().equals(title))
+                return task;
+        }
+        return null;
+    }
+
 }

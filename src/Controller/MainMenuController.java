@@ -39,7 +39,7 @@ public class MainMenuController {
     }
 
     public String createTask(String title, String startTime, String deadline) {
-        Task task = Task.getTaskByTitle(title);
+        Task task = MainMenuView.getSelectedTeam().getTaskByTitle(title);
         if(task!=null)
             return "There is another task with this title!";
         if(!startTime.matches("((\\d{4}-\\d{2}-\\d{2})\\|(([0-1]\\d)|(2[0-3])):[0-5]\\d)"))

@@ -3,33 +3,38 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Task {
+public class Task implements Comparable{
     private static ArrayList<Task> allTasks = new ArrayList<>();
     private int id;
     private String title;
     private String description;
     private TaskPriority priority;
+    private Date startTime;
     private Date deadline;
     private int progressPercentage = 0;
     private ArrayList<User>  assignedUsers = new ArrayList<>();
     private ArrayList<String> comments = new ArrayList<>();
+    private Team taskTeam;
+    private static int lastId;
 
 
 
+    @Override
+    public int compareTo(Object o) {
+        if(this.startTime.compareTo(((Task)o).startTime) != 0)
+            return this.startTime.compareTo(((Task)o).startTime);
+        return this.priority.compareTo(((Task)o).priority);
+    }
 
 
-    public Task(int id, String title, String description, Date dateAndTimeOfCreation, Date dateAndTimeOfDeadline, ArrayList<User> assignedUsers, ArrayList<String> comments) {
-
-        this.id = id;
+    public Task(String title, Date startTime, Date deadline, Team taskTeam) {
         this.title = title;
-        this.description = description;
-        this.assignedUsers = assignedUsers;
-        this.comments = comments;
+        this.startTime = startTime;
+        this.deadline = deadline;
+        this.id = ++lastId;
+        this.taskTeam=taskTeam;
     }
 
-    public Task (Date dateAndTimeOfDeadline) {
-        this.deadline = dateAndTimeOfDeadline;
-    }
 
     public static ArrayList<Task> getAllTasks() {
         return allTasks;
@@ -123,6 +128,7 @@ public class Task {
 
     public void updateDeadline(int year, int month, int day, int hour, int minute){
         this.deadline = new Date(year, month, day, hour, minute);
+        if(priority == TaskPriority.Highest);
     }
 
     public void removeUser(String username){
@@ -135,5 +141,15 @@ public class Task {
         }
         else System.out.println("There is not any user with this username" + username + "in list! ");
     }
+
+    public void addMember(Member member){
+        assignedUsers.add(member);
+    }
+
+    public void removeMember(Member member){
+        assignedUsers.remove(member);
+    }
+
+
 
 }
