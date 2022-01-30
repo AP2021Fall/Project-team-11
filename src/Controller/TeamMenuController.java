@@ -11,12 +11,6 @@ import java.util.Scanner;
 
 public class TeamMenuController {
     private static Scanner scanner = new Scanner(System.in);
-    private static Team selectedTeam ;
-
-
-    public static void getSelectedTeam(Team team){
-        selectedTeam = team;
-    }
 
     public static ArrayList<String> scoreBoard(Team team){
         HashMap <Member , Integer> scores= team.getTeamMembersScores();

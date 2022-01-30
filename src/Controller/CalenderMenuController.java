@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class CalenderMenuController {
-    public static ArrayList<String> getFormattedDeadlines (){
+    public ArrayList<String> getFormattedDeadlines (){
         ArrayList<Task>  userTasks= User.getLoggedInUser().getTasks() ;
         ArrayList<String> formattedDeadlines = new ArrayList<String>();
         for (Task task: userTasks) {
