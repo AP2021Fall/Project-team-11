@@ -31,7 +31,11 @@ public class BoardMenuController {
             return "This task doesn't exist in your team";
         }
         return Board.getActiveBoard().addTaskToBoard(theTask);
-    
+
+    }
+
+    public void addScores(){
+
     }
 
 

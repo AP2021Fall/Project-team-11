@@ -154,4 +154,19 @@ public class Team {
         return null;
     }
 
+    public void addScores(){
+        for(Task task : allTasks){
+            if(!task.checkFailure){
+                //if deadline is passed
+                for(User user : task.getAssignedUsers()){
+                    scores.put((Member)user, scores.get(user)-5);
+                }
+                //else if is done
+                for(User user : task.getAssignedUsers()){
+                    scores.put((Member)user, scores.get(user)+10);
+                }
+            }
+        }
+    }
+
 }

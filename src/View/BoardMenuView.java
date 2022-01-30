@@ -60,7 +60,7 @@ public class BoardMenuView {
 
                 }
                 if(input.matches(newCategory)){
-
+                    
                 }
                 if(input.matches(setColumn)){
 
@@ -94,8 +94,6 @@ public class BoardMenuView {
                 System.out.println("You do not have the permission to do that action!");
             }
             }
-
-        
         }
     }
 
