@@ -9,12 +9,12 @@ import java.util.Map;
 import java.util.Scanner;
 import Controller.TeamMenuController;
 import Main.Main;
+import Model.Task;
 import Model.Team;
 import Model.User;
 
 public class TeamMenuView {
-    private Team selectedTeam;
-    
+    private static Team selectedTeam;
     private static TeamMenuView teamMenuView = new TeamMenuView();
     TeamMenuController controller = new TeamMenuController();
     Scanner scanner = Main.getScanner();
@@ -73,9 +73,11 @@ public class TeamMenuView {
                         System.out.println(allChats.get(chat) +" : " + chat);
                     }
                 }else if(input.equals("show tasks") && (selectedTeam) != null){
-
-                    // need sorted tasks
+                    ArrayList<Task> alltasks = selectedTeam.getAllTasks();
+                    for(int i = 0 ; i < alltasks.size() ;i++){
+                        System.out.println(i+1 + " " + alltasks.get(i));
                     }
+                }
                 else System.out.println("not doable , due to unacceptable selected team or invalid command");
 
             }catch (Exception e){
@@ -87,6 +89,8 @@ public class TeamMenuView {
     public static TeamMenuView getTeamMenuView() {
         return teamMenuView;
     }
+
+    public static Team getSelectedTeam(){return selectedTeam;}
 
     private TeamMenuView(){
 

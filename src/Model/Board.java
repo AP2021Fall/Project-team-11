@@ -10,12 +10,14 @@ public class Board {
     private int idGenerator = 100;
     private int id;
     private Team team;
+    private int state;
     private final ArrayList <Task> boardTasks = new ArrayList<>();
     private ArrayList <Category> categories = new ArrayList<>();
 
 
     public Board(String name , Team team){
         this.name = name;
+        this.state = 0;
         this.id = idGenerator++;
         this.team = team;
         Category category = new Category("failed" , this);

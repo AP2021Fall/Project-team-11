@@ -21,6 +21,14 @@ public class Team {
         this.teamId = ++idGenerator;
     }
 
+    public ArrayList<Board> getBoards() {
+        return boards;
+    }
+
+    public void addBoards(Board board) {
+        this.boards.add(board);
+    }
+
     public Map<String , User> getChats() {
         return chats;
     }
