@@ -124,4 +124,12 @@ public class Team {
     public int getTeamId() {
         return teamId;
     }
+
+    public Task getTaskByTitle(String title){
+        for (Task task : allTasks) {
+            if(task.getTitle().equals(title))
+                return task;
+        }
+        return null;
+    }
 }
