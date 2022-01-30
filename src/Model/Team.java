@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 public class Team {
     private static ArrayList<Team> teams = new ArrayList<>();
+    private Map<String , User> chats = new HashMap<>();
     private ArrayList<Board> boards = new ArrayList<>();
     private String teamName;
     private int teamId;
@@ -18,6 +19,15 @@ public class Team {
         this.teamName = teamName;
         this.teamLeader = teamLeader;
         this.teamId = ++idGenerator;
+    }
+
+    public Map<String , User> getChats() {
+        return chats;
+    }
+
+    public void addChats(String chat , User user) {
+        chat = chats.size() + " " +chat;
+        this.chats.put(chat, user);
     }
 
     public static ArrayList<Team> getTeams() {

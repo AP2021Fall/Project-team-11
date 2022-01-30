@@ -1,0 +1,362 @@
+Index: src/Controller/TeamMenuController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Controller;\r\n\r\nimport Model.Member;\r\nimport Model.Task;\r\nimport Model.Team;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.HashMap;\r\n\r\npublic class TeamMenuController {\r\n\r\n    public ArrayList<String> scoreBoard(Team team){\r\n        HashMap <Member , Integer> scores= team.getTeamMembersScores();\r\n        ArrayList<String> output = new ArrayList<>();\r\n        for (Member member: scores.keySet()) {\r\n            output.add(member.getUsername() + \" : \"+ scores.get(member));\r\n        }\r\n        return output;\r\n    }\r\n//commented for now because of errors\r\n/*    public ArrayList<String> roadMap(Team team){\r\n        ArrayList<String> output = new ArrayList<>();\r\n        for (Task task : team.getAllTasks() ){\r\n            output.add(task.getTitle() + \" : \" + task.getProgressPercentage() +\"% done\");\r\n        }\r\n        return output;\r\n    }*/\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Controller/TeamMenuController.java b/src/Controller/TeamMenuController.java
+--- a/src/Controller/TeamMenuController.java	(revision 8e9a485760fda0f45c2f77f60fe7b36cd81cb02d)
++++ b/src/Controller/TeamMenuController.java	(date 1643453761361)
+@@ -8,6 +8,11 @@
+ import java.util.HashMap;
+ 
+ public class TeamMenuController {
++    private static Team selectedTeam ;
++
++    public static void getSelectedTeam(Team team){
++        selectedTeam = team;
++    }
+ 
+     public ArrayList<String> scoreBoard(Team team){
+         HashMap <Member , Integer> scores= team.getTeamMembersScores();
+@@ -17,13 +22,14 @@
+         }
+         return output;
+     }
+-//commented for now because of errors
+-/*    public ArrayList<String> roadMap(Team team){
++   public ArrayList<String> roadMap(Team team){
+         ArrayList<String> output = new ArrayList<>();
+         for (Task task : team.getAllTasks() ){
+             output.add(task.getTitle() + " : " + task.getProgressPercentage() +"% done");
+         }
+         return output;
+-    }*/
++    }
++
++
+ 
+ }
+Index: src/View/TeamMenuView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package View;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class TeamMenuView {\r\n    private static TeamMenuView teamMenuView = new TeamMenuView();\r\n    public void run(){\r\n\r\n    }\r\n    public void scoreBoardView(ArrayList<String> output){\r\n        for(int i = 0 ; i < output.size();i++){\r\n            System.out.println((i+1)+ output.get(i) +\"\\n\");\r\n        }\r\n    }\r\n    public void roadMapView(ArrayList<String> output){\r\n        for (int i = 0 ; i < output.size() ; i++){\r\n            System.out.println((i+1)+ output.get(i) + \"\\n\");\r\n        }\r\n    }\r\n\r\n\r\n    public static TeamMenuView getTeamMenuView() {\r\n        return teamMenuView;\r\n    }\r\n\r\n    private TeamMenuView(){\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/View/TeamMenuView.java b/src/View/TeamMenuView.java
+--- a/src/View/TeamMenuView.java	(revision 8e9a485760fda0f45c2f77f60fe7b36cd81cb02d)
++++ b/src/View/TeamMenuView.java	(date 1643453761376)
+@@ -1,10 +1,41 @@
+ package View;
+ 
++import Controller.LoginMenuController;
++import Main.Main;
++
+ import java.util.ArrayList;
++import java.util.Scanner;
++import Controller.TeamMenuController;
++import Main.Main;
++import Model.Team;
+ 
+ public class TeamMenuView {
++    private Team selectedTeam;
+     private static TeamMenuView teamMenuView = new TeamMenuView();
++    TeamMenuController controller = new TeamMenuController();
++    Scanner scanner = Main.getScanner();
++    String input;
+     public void run(){
++        while(!(input=scanner.nextLine()).equals("exit")){
++            String [] splitInput = input.split(" ");
++            try {
++
++                if (input.startsWith("Scoreboard")) {
++                    ArrayList<String> output = controller.scoreBoard(selectedTeam); //team
++                    for(int i = 0 ; i < output.size();i++) {
++                        System.out.println((i + 1) + output.get(i) + "\n");
++                    }
++                } else if (input.startsWith("Roadmap")) {
++                    ArrayList<String> output = controller.scoreBoard(selectedTeam); //team
++                    for (int i = 0 ; i < output.size() ; i++){
++                        System.out.println((i+1)+ output.get(i) + "\n");
++                    }
++                }
++                else System.out.println("invalid input");
++
++            }catch (Exception e){
++                System.out.println("invalid input");}
++        }
+ 
+     }
+     public void scoreBoardView(ArrayList<String> output){
+@@ -18,7 +49,6 @@
+         }
+     }
+ 
+-
+     public static TeamMenuView getTeamMenuView() {
+         return teamMenuView;
+     }
+Index: src/Model/Task.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Model;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class Task implements Comparable{\r\n    private static ArrayList<Task> allTasks = new ArrayList<>();\r\n    private int id;\r\n    private String title;\r\n    private String description;\r\n    private Date startTime;\r\n    private Date deadline;\r\n    private ArrayList<Member> assignedMembers = new ArrayList<>();\r\n    private ArrayList<String> comments = new ArrayList<>();\r\n    private Team taskTeam;\r\n    private static int lastId;\r\n\r\n    @Override\r\n    public int compareTo(Object o) {\r\n        return this.startTime.compareTo(((Task)o).startTime);\r\n    }\r\n\r\n\r\n    public Task(String title, Date startTime, Date deadline, Team taskTeam) {\r\n        this.title = title;\r\n        this.startTime = startTime;\r\n        this.deadline = deadline;\r\n        this.id = ++lastId;\r\n        this.taskTeam=taskTeam;\r\n    }\r\n\r\n    public static ArrayList<Task> getAllTasks() {\r\n        return allTasks;\r\n    }\r\n\r\n    public int getId() {\r\n        return id;\r\n    }\r\n\r\n    public String getTitle() {\r\n        return title;\r\n    }\r\n\r\n    public String getDescription() {\r\n        return description;\r\n    }\r\n\r\n    public Date getStartTime() {\r\n        return startTime;\r\n    }\r\n\r\n    public Date getDeadline() {\r\n        return deadline;\r\n    }\r\n\r\n    public ArrayList<Member> getAssignedMembers() {\r\n        return assignedMembers;\r\n    }\r\n\r\n    public ArrayList<String> getComments() {\r\n        return comments;\r\n    }\r\n\r\n    public void setId(int id) {\r\n        this.id = id;\r\n    }\r\n\r\n    public void setTitle(String title) {\r\n        this.title = title;\r\n    }\r\n\r\n    public void setDescription(String description) {\r\n        description = description;\r\n    }\r\n\r\n    public void setStartTime(Date startTime) {\r\n        this.startTime = startTime;\r\n    }\r\n\r\n    public void setDeadline(Date deadline) {\r\n        this.deadline = deadline;\r\n    }\r\n\r\n\r\n    public void setComments(ArrayList<String> comments) {\r\n        this.comments = comments;\r\n    }\r\n\r\n    public static Task getTaskById(int id) {\r\n        for (Task task : allTasks) {\r\n            if (task.id == id) return task;\r\n        }\r\n        return null;\r\n    }\r\n\r\n\r\n    public void removeMember(Member member){\r\n        assignedMembers.remove(member);\r\n    }\r\n\r\n    public void addMember(Member member){\r\n        assignedMembers.add(member);\r\n    }\r\n\r\n    public static Task getTaskByTitle(String title){\r\n        for (Task task : allTasks) {\r\n            if(task.title.equals(title))\r\n                return task;\r\n        }\r\n        return null;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Model/Task.java b/src/Model/Task.java
+--- a/src/Model/Task.java	(revision 8e9a485760fda0f45c2f77f60fe7b36cd81cb02d)
++++ b/src/Model/Task.java	(date 1642411372702)
+@@ -13,6 +13,7 @@
+     private ArrayList<String> comments = new ArrayList<>();
+     private Team taskTeam;
+     private static int lastId;
++    private int progressPercentage;
+ 
+     @Override
+     public int compareTo(Object o) {
+@@ -109,4 +110,7 @@
+         return null;
+     }
+ 
+-}
++    public int getProgressPercentage() {
++        return progressPercentage;
++    }
++}
+\ No newline at end of file
+Index: src/Model/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Model;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class User implements Comparable{\r\n    public static boolean isLeader;\r\n    protected static ArrayList<User> users = new ArrayList<>();\r\n    private static User loggedInUser;\r\n    protected String username;\r\n    protected String password;\r\n    protected String emailAddress;\r\n    protected ArrayList<Team> teams = new ArrayList<>();\r\n    protected ArrayList<Task> tasks = new ArrayList<>();\r\n\r\n\r\n    public User(String username, String password, String emailAddress) {\r\n        this.username = username;\r\n        this.password = password;\r\n        this.emailAddress = emailAddress;\r\n    }\r\n\r\n    public static ArrayList<User> getUsers() {\r\n        return users;\r\n    }\r\n\r\n    public String getPassword() {\r\n        return password;\r\n    }\r\n\r\n    public String getUsername() {\r\n        return username;\r\n    }\r\n\r\n    public String getEmailAddress() {\r\n        return emailAddress;\r\n    }\r\n\r\n    public static User getLoggedInUser() {\r\n        return loggedInUser;\r\n    }\r\n\r\n    public static void setLoggedInUser(User loggedInUser) {\r\n        User.loggedInUser = loggedInUser;\r\n    }\r\n\r\n    public static User getUserWithUserName(String username){\r\n        for (User user : users) {\r\n            if(user.username.equals(username))\r\n                return user;\r\n        }\r\n        return null;\r\n    }\r\n\r\n\r\n    public void setPassword(String password) {\r\n        this.password = password;\r\n    }\r\n\r\n    public void setUsername(String username) {\r\n        this.username = username;\r\n    }\r\n\r\n    public static User getUserWithEmail(String emailAddress){\r\n        for (User user : users) {\r\n            if(user.emailAddress.equals(emailAddress))\r\n                return user;\r\n        }\r\n        return null;\r\n    }\r\n\r\n\r\n    public ArrayList<Team> getTeams() {\r\n        return teams;\r\n    }\r\n\r\n    public Team getTeamByTeamName(String teamName){\r\n        for (Team team : teams) {\r\n            if(team.getTeamName().equals(teamName))\r\n                return team;\r\n        }\r\n        return null;\r\n    }\r\n\r\n    public ArrayList<Task> getTasks(){ return  this.tasks ;}\r\n\r\n    @Override\r\n    public int compareTo(Object o) {\r\n        return this.username.compareTo(((User)o).username);\r\n    }\r\n\r\n    public void addTeam(Team team){\r\n        teams.add(team);\r\n    }\r\n\r\n    public void deleteTeam(Team team){\r\n        teams.remove(team);\r\n    }\r\n\r\n    public Team getTeamWithTeamName (String teamName){\r\n        for (Team team : teams) {\r\n            if(teamName.equals(team.getTeamName()))\r\n                return team;\r\n        }\r\n        return null;\r\n    }\r\n\r\n    public Team getTeamWithId (int id){\r\n        for (Team team : teams) {\r\n            if(id == team.getTeamId())\r\n                return team;\r\n        }\r\n        return null;\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Model/User.java b/src/Model/User.java
+--- a/src/Model/User.java	(revision 8e9a485760fda0f45c2f77f60fe7b36cd81cb02d)
++++ b/src/Model/User.java	(date 1643453761385)
+@@ -3,7 +3,7 @@
+ import java.util.ArrayList;
+ 
+ public class User implements Comparable{
+-    public static boolean isLeader;
++    public boolean isLeader;
+     protected static ArrayList<User> users = new ArrayList<>();
+     private static User loggedInUser;
+     protected String username;
+Index: src/Model/Team.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Model;\r\n\r\nimport java.util.*;\r\nimport java.util.stream.Collectors;\r\n\r\npublic class Team {\r\n    private static ArrayList<Team> teams = new ArrayList<>();\r\n    private String teamName;\r\n    private int teamId;\r\n    private Leader teamLeader;\r\n    private Date creationDate;\r\n    private HashMap <Member , Integer> scores= new HashMap <>();\r\n    private static int idGenerator;\r\n    private ArrayList <Task> allTasks = new ArrayList<>();\r\n\r\n    public Team(String teamName, Leader teamLeader) {\r\n        this.teamName = teamName;\r\n        this.teamLeader = teamLeader;\r\n        this.teamId = ++idGenerator;\r\n    }\r\n\r\n    public static ArrayList<Team> getTeams() {\r\n        return teams;\r\n    }\r\n\r\n    public String getTeamName() {\r\n        return teamName;\r\n    }\r\n\r\n    public Leader getTeamLeader() {\r\n        return teamLeader;\r\n    }\r\n\r\n    public HashMap<Member, Integer> getTeamMembersScores(){\r\n        sortTeamScores();\r\n        return scores;\r\n    }\r\n    public ArrayList<Member> getMembers() {\r\n        return new ArrayList<>(scores.keySet());\r\n    }\r\n\r\n    public Date getCreationDate() {\r\n        return creationDate;\r\n    }\r\n\r\n    public int getTeamNumber() {\r\n        return teamId;\r\n    }\r\n\r\n    public void setTeamLeader(Leader teamLeader) {\r\n        this.teamLeader = teamLeader;\r\n    }\r\n\r\n    public void addMember(Member member){scores.put(member , 0);}\r\n\r\n    public void deleteMember(Member member){scores.remove(member);}\r\n\r\n    public static Team getTeamWithTeamName (String teamName){\r\n        for (Team team : teams) {\r\n            if(teamName.equals(team.teamName))\r\n                return team;\r\n        }\r\n        return null;\r\n    }\r\n\r\n    public static Team getTeamWithId (int id){\r\n        for (Team team : teams) {\r\n            if(id == team.teamId)\r\n                return team;\r\n        }\r\n        return null;\r\n    }\r\n\r\n    public ArrayList<Task> getAllTasks(){return allTasks;}\r\n\r\n    public void sortTeamScores(){\r\n        Map<Member, Integer> sortedMap =\r\n                scores.entrySet().stream()\r\n                        .sorted(Map.Entry.comparingByValue())\r\n                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,\r\n                                (e1, e2) -> e1, LinkedHashMap::new));\r\n    }\r\n\r\n    public void addTask(Task task){\r\n        allTasks.add(task);\r\n    }\r\n\r\n    public Member getMembersWithUsername(String username){\r\n        for (Member member : scores.keySet()) {\r\n            if(member.getUsername().equals(username))\r\n                return member;\r\n        }\r\n        return null;\r\n    }\r\n\r\n    public Task getTaskWithId(int id){\r\n        for (Task task : allTasks) {\r\n            if(task.getId() == id)\r\n                return task;\r\n        }\r\n        return null;\r\n    }\r\n\r\n    public static void addTeam(Team team){\r\n        teams.add(team);\r\n    }\r\n\r\n    public int getTeamId() {\r\n        return teamId;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Model/Team.java b/src/Model/Team.java
+--- a/src/Model/Team.java	(revision 8e9a485760fda0f45c2f77f60fe7b36cd81cb02d)
++++ b/src/Model/Team.java	(date 1643280337849)
+@@ -5,6 +5,7 @@
+ 
+ public class Team {
+     private static ArrayList<Team> teams = new ArrayList<>();
++    private ArrayList<Board> boards = new ArrayList<>();
+     private String teamName;
+     private int teamId;
+     private Leader teamLeader;
+@@ -93,6 +94,11 @@
+         return null;
+     }
+ 
++
++    public void createBoard(){
++
++    }
++
+     public Task getTaskWithId(int id){
+         for (Task task : allTasks) {
+             if(task.getId() == id)
+Index: src/Model/Board.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Model;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class Board {\r\n    private String name;\r\n    //Board select +\r\n    private static Board activeBoard ;\r\n    private final ArrayList <Task> boardTasks = new ArrayList<>();\r\n    private ArrayList <Category> columns = new ArrayList<>();\r\n\r\n    public Board(String name){\r\n        this.name = name;\r\n        Category category = new Category(\"failed\");\r\n        this.columns.add(category);\r\n        Category category1 = new Category(\"done\");\r\n        this.columns.add(category1);\r\n    }\r\n\r\n    public boolean assignTask(Task task) {\r\n        for (Task tasks:boardTasks){\r\n            if (task.equals(tasks)){\r\n                System.out.println(\"This task already exists on this board!\");\r\n                return false;\r\n            }\r\n        }\r\n        boardTasks.add(task);\r\n        return true;\r\n    }\r\n\r\n}\r\n\r\nclass Category{\r\n    private static int idGenerator = 1;\r\n    private int id;\r\n    private String name;\r\n    ArrayList<Task> categoryTasks = new ArrayList<>();\r\n\r\n\r\n    public Category(String name){\r\n        this.name = name;\r\n        this.id = idGenerator;\r\n        idGenerator++;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Model/Board.java b/src/Model/Board.java
+--- a/src/Model/Board.java	(revision 8e9a485760fda0f45c2f77f60fe7b36cd81cb02d)
++++ b/src/Model/Board.java	(date 1643453761369)
+@@ -3,18 +3,31 @@
+ import java.util.ArrayList;
+ 
+ public class Board {
+-    private String name;
+     //Board select +
+     private static Board activeBoard ;
++    private static ArrayList<Board> allBoards = new ArrayList<>();
++    private String name;
++    private int idGenerator = 100;
++    private int id;
++    private Team team;
+     private final ArrayList <Task> boardTasks = new ArrayList<>();
+-    private ArrayList <Category> columns = new ArrayList<>();
++    private ArrayList <Category> categories = new ArrayList<>();
+ 
+-    public Board(String name){
++
++    public Board(String name , Team team){
+         this.name = name;
+-        Category category = new Category("failed");
+-        this.columns.add(category);
+-        Category category1 = new Category("done");
+-        this.columns.add(category1);
++        this.id = idGenerator++;
++        this.team = team;
++        Category category = new Category("failed" , this);
++        this.categories.add(category);
++        Category category1 = new Category("done" , this);
++        this.categories.add(category1);
++        allBoards.add(this);
++    }
++
++    public static void removeBoard(Board board){
++        //needs if for not existing
++        allBoards.remove(board);
+     }
+ 
+     public boolean assignTask(Task task) {
+@@ -28,18 +41,55 @@
+         return true;
+     }
+ 
++    public int getId(){return this.id;}
++
++    public ArrayList<Category> getCategories(){return categories;}
++
++    public void setActiveBoard(Board board){activeBoard = board;}
++
++    public String getName(){return this.name;}
++
++    public String addCategory(String name , int column){
++        Category category = getCategoryByName(name);
++        if (category.equals(null)){
++            //view handler
++            return "NO Category with this name";
++        }
++        else {
++            try {
++                this.categories.add(column - 1,category);
++            }catch (Exception e){
++                return "Wrong column";
++            }
++        }
++        return "Category" + name + " added to column" + column;
++    }
++
++    public Category getCategoryByName(String name){
++        for (Category category : this.getCategories()){
++            if (category.getName().equals(name)){
++                return category;
++            }
++        }
++        return null;
++    }
++
+ }
+ 
+ class Category{
+     private static int idGenerator = 1;
+-    private int id;
+-    private String name;
+-    ArrayList<Task> categoryTasks = new ArrayList<>();
++    private final int id;
++    private final String name;
++    ArrayList<Task> tasks = new ArrayList<>();
+ 
+ 
+-    public Category(String name){
++    public Category(String name ,Board board){
+         this.name = name;
+-        this.id = idGenerator;
+-        idGenerator++;
++        this.id = idGenerator++;
+     }
+-}
+\ No newline at end of file
++
++    public void assignTask(Task task){this.tasks.add(task);}
++
++    public String getName(){return name;}
++
++}
+Index: .idea/runConfigurations.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/runConfigurations.xml b/.idea/runConfigurations.xml
+new file mode 100644
+--- /dev/null	(date 1642410955875)
++++ b/.idea/runConfigurations.xml	(date 1642410955875)
+@@ -0,0 +1,10 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RunConfigurationProducerService">
++    <option name="ignoredProducers">
++      <set>
++        <option value="com.android.tools.idea.compose.preview.runconfiguration.ComposePreviewRunConfigurationProducer" />
++      </set>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_17\" default=\"true\" project-jdk-name=\"openjdk-17\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 8e9a485760fda0f45c2f77f60fe7b36cd81cb02d)
++++ b/.idea/misc.xml	(date 1642410955886)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="openjdk-17" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="openjdk-17" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/Controller/BoardMenuController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Controller/BoardMenuController.java b/src/Controller/BoardMenuController.java
+new file mode 100644
+--- /dev/null	(date 1643280337859)
++++ b/src/Controller/BoardMenuController.java	(date 1643280337859)
+@@ -0,0 +1,4 @@
++package Controller;
++
++public class BoardMenuController {
++}
+Index: src/Controller/MainMenuController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Controller;\r\n\r\nimport Main.Main;\r\nimport Model.*;\r\nimport View.MainMenuView;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class MainMenuController {\r\n\r\n    public String createTeam(String teamName){\r\n        if(Team.getTeamWithTeamName(teamName) != null)\r\n            return \"There is another team with this name!\";\r\n        if(teamName.length()<5 || teamName.length()>12 || !Main.checkMatching(teamName,\".*[A-Z].*\") || !Main.checkMatching(teamName,\".+\\\\d.*\"))\r\n            return \"Team name is invalid!\";\r\n        Admin.addPendingTeam(new Team(teamName, (Leader) User.getLoggedInUser()));\r\n        return \"Team created successfully! Waiting For Admin’s confirmation…\";\r\n\r\n    }\r\n\r\n    public String showTeam(String teamIdOrName){\r\n        int teamId=0;\r\n        boolean flag = false;\r\n        try {\r\n            teamId = Integer.parseInt(teamIdOrName);\r\n            flag = true;\r\n        }\r\n        catch (NumberFormatException ignored) {\r\n        }\r\n        Team team;\r\n        if(flag)\r\n            team = User.getLoggedInUser().getTeamWithId(teamId);\r\n        else\r\n            team = User.getLoggedInUser().getTeamByTeamName(teamIdOrName);\r\n        if(team == null)\r\n            return \"Team not found!\";\r\n        MainMenuView.setSelectedTeam(team);\r\n        return \"team found!\";\r\n\r\n    }\r\n\r\n    public String createTask(String title, String startTime, String deadline) {\r\n        Task task = Task.getTaskByTitle(title);\r\n        if(task!=null)\r\n            return \"There is another task with this title!\";\r\n        if(!startTime.matches(\"((\\\\d{4}-\\\\d{2}-\\\\d{2})\\\\|(([0-1]\\\\d)|(2[0-3])):[0-5]\\\\d)\"))\r\n            return \"Invalid start date!\";\r\n        if(!deadline.matches(\"((\\\\d{4}-\\\\d{2}-\\\\d{2})\\\\|(([0-1]\\\\d)|(2[0-3])):[0-5]\\\\d)\"))\r\n            return \"Invalid deadline!\";\r\n\r\n        Date startDate = new Date(startTime);\r\n        Date endDate = new Date(deadline);\r\n        MainMenuView.getSelectedTeam().addTask(new Task(title,startDate,endDate,MainMenuView.getSelectedTeam()));\r\n\r\n        return \"Task created successfully!\";\r\n// It's not necessary right now, but I should probably add task to all tasks\r\n\r\n    }\r\n\r\n    public String addMember(String username) {\r\n        User member = User.getUserWithUserName(username);\r\n        if(!(member instanceof Member))\r\n            return \"No user exists with this username !\";\r\n        MainMenuView.getSelectedTeam().addMember((Member) member);\r\n        member.addTeam(MainMenuView.getSelectedTeam());\r\n        return  \"Member added successfully !\";\r\n\r\n    }\r\n\r\n    public String deleteMember(String username) {\r\n        Member member = MainMenuView.getSelectedTeam().getMembersWithUsername(username);\r\n        if(member == null)\r\n            return \"No user exists with this username !\";\r\n        MainMenuView.getSelectedTeam().deleteMember(member);\r\n        member.deleteTeam(MainMenuView.getSelectedTeam());\r\n        return \"Member deleted successfully !\";\r\n    }\r\n\r\n    public String assignTask(String id, String username) {\r\n        Member member = MainMenuView.getSelectedTeam().getMembersWithUsername(username);\r\n        Task task = MainMenuView.getSelectedTeam().getTaskWithId(Integer.parseInt(id));\r\n        if(member == null)\r\n            return \"No user exists with this username !\";\r\n        if(task == null)\r\n            return \"No Task exists with this id!\";\r\n        member.addTask(task);\r\n        task.addMember(member);\r\n        return \"Member Assigned Successfully!\";\r\n\r\n    }\r\n\r\n    public String acceptTeams(String[] inputs) {\r\n        ArrayList<Team> teams = new ArrayList<>();\r\n        for(int i=2;i<inputs.length;i++){\r\n            Team team = Admin.getTeamByName(inputs[i]);\r\n            if(team == null)\r\n                return \"Some teams are not in pending status! Try again\";\r\n            teams.add(team);\r\n        }\r\n        for (Team team : teams) {\r\n            Team.addTeam(team);\r\n            team.getTeamLeader().addTeam(team);\r\n            Admin.removeTeam(team);\r\n        }\r\n        return \"Accepted pending teams !\";\r\n    }\r\n\r\n    public String rejectTeams(String[] inputs){\r\n        ArrayList<Team> teams = new ArrayList<>();\r\n        for(int i=2;i<inputs.length;i++){\r\n            Team team = Admin.getTeamByName(inputs[i]);\r\n            if(team == null)\r\n                return \"Some teams are not in pending status! Try again\";\r\n            teams.add(team);\r\n        }\r\n        for (Team team : teams) {\r\n            Admin.removeTeam(team);\r\n        }\r\n\r\n        return \"Rejected pending teams !\";\r\n    }\r\n\r\n    public String changeRole(String username, String role) {\r\n        User user = User.getUserWithUserName(username);\r\n        if(user == null || user.equals(User.getLoggedInUser()))\r\n            return \"There is no user with this username\";\r\n        if(!role.equalsIgnoreCase(\"Member\") || !role.equalsIgnoreCase(\"Leader\"))\r\n            return \"Invalid role\";\r\n        if(user instanceof Member && role.equalsIgnoreCase(\"Member\") || user instanceof Leader && role.equalsIgnoreCase(\"Leader\"))\r\n            return \"User already have this role\";\r\n        if(user instanceof Member){\r\n            User.getUsers().remove(user);\r\n            User.getUsers().add(new Leader(user.getUsername(),user.getPassword(),user.getEmailAddress()));\r\n            for (Team team : user.getTeams()) {\r\n                team.deleteMember((Member) user);\r\n            }\r\n            for (Task task : user.getTasks()) {\r\n                task.removeMember((Member) user);\r\n            }\r\n            user.getTeams().clear();\r\n            user.getTasks().clear();\r\n        }\r\n        return \"Role changed successfully\";\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Controller/MainMenuController.java b/src/Controller/MainMenuController.java
+--- a/src/Controller/MainMenuController.java	(revision 8e9a485760fda0f45c2f77f60fe7b36cd81cb02d)
++++ b/src/Controller/MainMenuController.java	(date 1642410955863)
+@@ -36,7 +36,6 @@
+             return "Team not found!";
+         MainMenuView.setSelectedTeam(team);
+         return "team found!";
+-
+     }
+ 
+     public String createTask(String title, String startTime, String deadline) {
