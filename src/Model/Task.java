@@ -16,6 +16,8 @@ public class Task implements Comparable{
     private ArrayList<String> comments = new ArrayList<>();
     private Team taskTeam;
     private static int lastId;
+    private Board board;
+    public boolean checkFailure = false;
 
 
 
@@ -153,4 +155,7 @@ public class Task implements Comparable{
     public Team getTaskTeam() {
         return taskTeam;
     }
+
+    public void changeProggressPercentage(int percentage){this.progressPercentage = percentage;}
+
 }
