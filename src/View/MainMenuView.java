@@ -63,7 +63,7 @@ public class MainMenuView {
 
                 if(selectedTeam!=null){
 
-                    if(input.startsWith("sudo show")){
+                    if(input.equals("sudo show --all --tasks")){
                         ArrayList<Task> tasks= selectedTeam.getAllTasks();
                         Collections.sort(tasks);
                         for (Task task : tasks) {

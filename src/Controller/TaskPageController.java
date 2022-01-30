@@ -1,4 +1,5 @@
 package Controller;
+import Model.Leader;
 import Model.Task;
 import Model.User;
 import java.util.regex.Matcher;
@@ -21,7 +22,7 @@ public class TaskPageController {
         help();
         while (true){
             command = getScanner().nextLine();
-            if (User.getLoggedInUser().isLeader){
+            if (User.getLoggedInUser() instanceof Leader){
                 if (command.matches(BACK_PATTERN)){
                     return;
                 }
@@ -55,7 +56,7 @@ public class TaskPageController {
                 else if (command.matches(ASSIGNED_USERS_ADD_PATTERN)){
                     taskPageWithID(getMatcher(command, ASSIGNED_USERS_ADD_PATTERN));
                     theTask.addUser(getUsername(getMatcher(command, ASSIGNED_USERS_ADD_PATTERN)));
-                    System.out.println("User"+ getUsername(getMatcher(command, ASSIGNED_USERS_REMOVE_PATTERN))+"added successfully!");
+                    System.out.println("User"+ getUsername(getMatcher(command, ASSIGNED_USERS_ADD_PATTERN))+"added successfully!");
                 }
                 else if (command.matches(ASSIGNED_USERS_REMOVE_PATTERN)){
                     taskPageWithID(getMatcher(command, ASSIGNED_USERS_REMOVE_PATTERN));

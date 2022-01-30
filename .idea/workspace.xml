@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="664ac78c-05db-4f72-a90a-00de848a93e5" name="Changes" comment="fixed errors">
+    <list default="true" id="664ac78c-05db-4f72-a90a-00de848a93e5" name="Changes" comment=".">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TaskPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TaskPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/TaskPriority.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/TaskPriority.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/MainMenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainMenuView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643557474771</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary=".">
+      <created>1643557631264</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1643557631264</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,6 +296,7 @@
     <MESSAGE value="taskpage" />
     <MESSAGE value="idk anymore" />
     <MESSAGE value="fixed errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed errors" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
 </project>

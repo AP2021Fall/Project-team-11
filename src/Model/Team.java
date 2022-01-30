@@ -82,7 +82,10 @@ public class Team {
         return null;
     }
 
-    public ArrayList<Task> getAllTasks(){return allTasks;}
+    public ArrayList<Task> getAllTasks(){
+        Collections.sort(allTasks);
+        return allTasks;
+    }
 
     public void sortTeamScores(){
         Map<Member, Integer> sortedMap =
@@ -132,4 +135,5 @@ public class Team {
         }
         return null;
     }
+
 }

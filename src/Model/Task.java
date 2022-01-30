@@ -21,7 +21,9 @@ public class Task implements Comparable{
 
     @Override
     public int compareTo(Object o) {
-        return this.startTime.compareTo(((Task)o).startTime);
+        if(this.startTime.compareTo(((Task)o).startTime) != 0)
+            return this.startTime.compareTo(((Task)o).startTime);
+        return this.priority.compareTo(((Task)o).priority);
     }
 
 
@@ -126,6 +128,7 @@ public class Task implements Comparable{
 
     public void updateDeadline(int year, int month, int day, int hour, int minute){
         this.deadline = new Date(year, month, day, hour, minute);
+        if(priority == TaskPriority.Highest);
     }
 
     public void removeUser(String username){

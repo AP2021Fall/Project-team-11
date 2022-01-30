@@ -12,7 +12,7 @@ public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        System.out.println("JIRA PROJECT V.1        ");
+        System.out.println("JIRA PROJECT V.1");
         User.getUsers().add(new Admin("Admin","123456","admin@gmail.com"));
         LoginMenuView.getLoginMenuView().run();
     }
