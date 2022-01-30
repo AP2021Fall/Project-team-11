@@ -124,6 +124,8 @@ public class Team {
         teams.add(team);
     }
 
+    public static void removeTeam(Team team){teams.remove(team);}
+
     public int getTeamId() {
         return teamId;
     }

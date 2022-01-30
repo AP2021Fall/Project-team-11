@@ -150,6 +150,7 @@ public class Task implements Comparable{
         assignedUsers.remove(member);
     }
 
-
-
+    public Team getTaskTeam() {
+        return taskTeam;
+    }
 }

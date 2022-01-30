@@ -72,6 +72,17 @@ public class MainMenuController {
             return "No user exists with this username !";
         MainMenuView.getSelectedTeam().deleteMember(member);
         member.deleteTeam(MainMenuView.getSelectedTeam());
+        for (Task task : MainMenuView.getSelectedTeam().getAllTasks()) {
+            task.removeMember(member);
+        }
+
+        for (int i=0 ; i<member.getTasks().size(); i++) {
+            Task task = member.getTasks().get(i);
+            if(task.getTaskTeam().equals(MainMenuView.getSelectedTeam())) {
+                member.removeTask(task);
+                i--;
+            }
+        }
         return "Member deleted successfully !";
     }
 
@@ -136,10 +147,40 @@ public class MainMenuController {
             for (Task task : user.getTasks()) {
                 task.removeMember((Member) user);
             }
-            user.getTeams().clear();
-            user.getTasks().clear();
+        }
+        else{
+            User.getUsers().remove(user);
+            User.getUsers().add(new Member(user.getUsername(),user.getPassword(),user.getEmailAddress()));
+            for (Team team : user.getTeams()) {
+                for (Member member : team.getMembers()) {
+                    member.deleteTeam(team);
+                }
+                Team.removeTeam(team);
+            }
+
         }
         return "Role changed successfully";
 
+    }
+
+    public String promote(String username) {
+        Member member = MainMenuView.getSelectedTeam().getMembersWithUsername(username);
+        if(member == null)
+            return "No user exists with this username !";
+        Leader newLeader = new Leader(member.getUsername(),member.getPassword(),member.getEmailAddress());
+        Leader oldLeader = MainMenuView.getSelectedTeam().getTeamLeader();
+
+        User.getUsers().remove(member);
+        User.getUsers().add(newLeader);
+        for (Team team : member.getTeams()) {
+            team.deleteMember(member);
+        }
+        for (Task task : member.getTasks()) {
+            task.removeMember(member);
+        }
+        oldLeader.deleteTeam(MainMenuView.getSelectedTeam());
+        newLeader.addTeam(MainMenuView.getSelectedTeam());
+        MainMenuView.getSelectedTeam().setTeamLeader(newLeader);
+        return "User promoted successfully!";
     }
 }

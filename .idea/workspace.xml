@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="664ac78c-05db-4f72-a90a-00de848a93e5" name="Changes" comment=".">
+    <list default="true" id="664ac78c-05db-4f72-a90a-00de848a93e5" name="Changes" comment="task sort">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TaskPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TaskPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TeamMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TeamMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Member.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/TaskPriority.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/TaskPriority.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Team.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/MainMenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainMenuView.java" afterDir="false" />
     </list>
@@ -258,7 +258,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643557631264</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="task sort">
+      <created>1643559781529</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1643559781529</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,6 +304,7 @@
     <MESSAGE value="idk anymore" />
     <MESSAGE value="fixed errors" />
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="task sort" />
+    <option name="LAST_COMMIT_MESSAGE" value="task sort" />
   </component>
 </project>

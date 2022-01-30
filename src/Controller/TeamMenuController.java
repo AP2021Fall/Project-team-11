@@ -18,7 +18,7 @@ public class TeamMenuController {
         selectedTeam = team;
     }
 
-    public ArrayList<String> scoreBoard(Team team){
+    public static ArrayList<String> scoreBoard(Team team){
         HashMap <Member , Integer> scores= team.getTeamMembersScores();
         ArrayList<String> output = new ArrayList<>();
         for (Member member: scores.keySet()) {

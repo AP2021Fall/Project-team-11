@@ -1,6 +1,7 @@
 package View;
 
 import Controller.MainMenuController;
+import Controller.TeamMenuController;
 import Main.Main;
 import Model.*;
 
@@ -94,6 +95,16 @@ public class MainMenuView {
                     if(input.startsWith("assign member")){
                         System.out.println(controller.assignTask(splitInput[3],splitInput[5]));
                     }
+
+                    if (input.equals("show --scoreboard")){
+                        for (String output : TeamMenuController.scoreBoard(selectedTeam))
+                            System.out.println(output);
+
+                    }
+
+                    if(input.startsWith("promote --username")){
+                        System.out.println(controller.promote(splitInput[2]));
+                    }
                 }
             }
 
@@ -118,6 +129,17 @@ public class MainMenuView {
 
                 if(input.startsWith("change role")){
                     System.out.println(controller.changeRole(splitInput[2],splitInput[4]));
+                }
+
+                if(input.startsWith("show profile")){
+                    User user = User.getUserWithUserName(splitInput[3]);
+                    if(user == null){
+                        System.out.println("There is no user with this username");
+                        continue;
+                    }
+                    System.out.println(user.getUsername());
+                    System.out.println(user.getEmailAddress());
+                    System.out.println(user.getClass().getSimpleName());
                 }
             }
 

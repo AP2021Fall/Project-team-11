@@ -16,4 +16,6 @@ public class Member extends User{
     public void addTask(Task task){
         tasks.add(task);
     }
+
+    public void removeTask(Task task) {tasks.remove(task);}
 }
