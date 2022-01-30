@@ -2,52 +2,53 @@ package Model;
 
 import java.util.ArrayList;
 
+import View.TeamMenuView;
+
 public class Board {
     //Board select +
     private static Board activeBoard ;
-    private static ArrayList<Board> allBoards = new ArrayList<>();
     private String name;
     private int idGenerator = 100;
     private int id;
     private Team team;
-    private int state;
+    private boolean state;
     private final ArrayList <Task> boardTasks = new ArrayList<>();
     private ArrayList <Category> categories = new ArrayList<>();
 
 
     public Board(String name , Team team){
         this.name = name;
-        this.state = 0;
+        this.state = false;
         this.id = idGenerator++;
         this.team = team;
         Category category = new Category("failed" , this);
         this.categories.add(category);
         Category category1 = new Category("done" , this);
         this.categories.add(category1);
-        allBoards.add(this);
+        TeamMenuView.getSelectedTeam().getBoards().add(this);
     }
 
     public static void removeBoard(Board board){
-        //needs if for not existing
-        allBoards.remove(board);
+        TeamMenuView.getSelectedTeam().getBoards().remove(board);
     }
 
-    public boolean assignTask(Task task) {
+    public String addTaskToBoard(Task task) {
         for (Task tasks:boardTasks){
             if (task.equals(tasks)){
-                System.out.println("This task already exists on this board!");
-                return false;
+                return "This task already exists on this board!";
             }
         }
         boardTasks.add(task);
-        return true;
+        return "Successfully added!";
     }
 
     public int getId(){return this.id;}
 
     public ArrayList<Category> getCategories(){return categories;}
 
-    public void setActiveBoard(Board board){activeBoard = board;}
+    public static void setActiveBoard(Board board){activeBoard = board;}
+
+    public void setState(Boolean state){this.state = state;}
 
     public static Board getActiveBoard(){return activeBoard;}
 
@@ -62,5 +63,6 @@ public class Board {
         }
         return null;
     }
+
 
 }

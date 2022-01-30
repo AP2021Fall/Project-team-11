@@ -3,6 +3,8 @@ package Model;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import View.TeamMenuView;
+
 public class Team {
     private static ArrayList<Team> teams = new ArrayList<>();
     private Map<String , User> chats = new HashMap<>();
@@ -142,6 +144,12 @@ public class Team {
         for (Task task : allTasks) {
             if(task.getTitle().equals(title))
                 return task;
+        }
+        return null;
+    }
+        public Board getBoardByName(String name){
+        for (Board board : TeamMenuView.getSelectedTeam().boards) {
+            if (board.getName() == name) return board;
         }
         return null;
     }
