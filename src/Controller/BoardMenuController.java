@@ -1,8 +1,12 @@
 package Controller;
 
+import java.util.ArrayList;
+
 import Model.*;
+import View.TeamMenuView;
 
 public class BoardMenuController {
+
 
     public String addCategory(String name , int column){
         Category category = Board.getActiveBoard().getCategoryByName(name);
@@ -19,5 +23,16 @@ public class BoardMenuController {
         }
         return "Category" + name + " added to column" + column;
     }
+
+    public static String addTaskToBoard(int taskID){
+        ArrayList<Task> allTasks = new ArrayList<>(TeamMenuView.getSelectedTeam().getAllTasks());
+        Task theTask = TeamMenuView.getSelectedTeam().getTaskWithId(taskID);
+        if(theTask.equals(null)){
+            return "This task doesn't exist in your team";
+        }
+        return Board.getActiveBoard().addTaskToBoard(theTask);
+    
+    }
+
 
 }
