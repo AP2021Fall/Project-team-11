@@ -157,14 +157,23 @@ public class Team {
     public void addScores(){
         for(Task task : allTasks){
             if(!task.checkFailure){
-                //if deadline is passed
-                for(User user : task.getAssignedUsers()){
-                    scores.put((Member)user, scores.get(user)-5);
+                String[] splitTime = Date.liveTime().split("-");
+                int year = Integer.parseInt(splitTime[1]);
+                int month = Integer.parseInt(splitTime[2]);
+                int day = Integer.parseInt(splitTime[3]);
+                Date deadline = task.getDeadline();
+                if(deadline.year < year || ((deadline.year == year )&& (deadline.month < month)) || ((deadline.year == year) && (deadline.month == month) && (deadline.day < day))){
+                    if(task.getProgressPercentage() < 100){
+                        for(User user : task.getAssignedUsers()){
+                            scores.put((Member)user, scores.get(user)-5);
+                        }
+                    }else{
+                        for(User user : task.getAssignedUsers()){
+                            scores.put((Member)user, scores.get(user)+10);
+                        }
+                    }
                 }
-                //else if is done
-                for(User user : task.getAssignedUsers()){
-                    scores.put((Member)user, scores.get(user)+10);
-                }
+
             }
         }
     }
