@@ -1,6 +1,7 @@
 package View;
 
 import Controller.MainMenuController;
+import Controller.TaskPageController;
 import Controller.TeamMenuController;
 import Main.Main;
 import Model.*;
@@ -35,7 +36,7 @@ public class MainMenuView {
                 }
 
                 else if (menuName.equalsIgnoreCase("Tasks")) {
-                    TaskPageView.getTaskPageView().run();
+                    TaskPageController.getController().runMenu();
                 }
 
                 else if (menuName.equalsIgnoreCase("Calendar")) {

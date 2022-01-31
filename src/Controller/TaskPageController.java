@@ -16,7 +16,12 @@ public class TaskPageController {
     private final String HELP_PATTERN = "help";
     private final String BACK_PATTERN = "back";
     private final String INVALID_COMMAND_PROMPT = "invalid command!";
+    private static TaskPageController controller = new TaskPageController();
     private String command;
+
+    public static TaskPageController getController() {
+        return controller;
+    }
 
     public void runMenu(){
         help();
