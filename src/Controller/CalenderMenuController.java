@@ -20,11 +20,10 @@ public class CalenderMenuController {
     private static String formatDeadline(Date date){
         String deadline = date.getYear() + "-" + date.getMonth() + "-" + date.getDay() + "__remaining days: ";
         String timeDifferenceBetweenNowAndDeadline = date.timeDifferenceWithLive(date);
-        Pattern timePattern = Pattern.compile("^([0-9]{1,3})-([0-9]{1,2})-([0-9]{1,2})$");
-        Matcher timeMatcher = timePattern.matcher(timeDifferenceBetweenNowAndDeadline);
-        int yearDifference = Integer.parseInt(timeMatcher.group(1));
-        int monthDifference = Integer.parseInt(timeMatcher.group(2));
-        int dateDifference = Integer.parseInt(timeMatcher.group(3));
+        String[] split = timeDifferenceBetweenNowAndDeadline.split("-");
+        int yearDifference = Integer.parseInt(split[0]);
+        int monthDifference = Integer.parseInt(split[1]);
+        int dateDifference = Integer.parseInt(split[2]);
         int remainingDays = (yearDifference*360) + (monthDifference*30) + dateDifference;
         if (yearDifference > 0 || monthDifference > 0 || dateDifference > 10){
             return "*" + deadline + remainingDays;

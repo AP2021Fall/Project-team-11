@@ -26,51 +26,46 @@ public class TaskPageController {
     public void runMenu(){
         help();
         while (true){
-            command = getScanner().nextLine();
-            if (User.getLoggedInUser() instanceof Leader){
-                if (command.matches(BACK_PATTERN)){
-                    return;
-                }
-                else if (command.matches(HELP_PATTERN)){
-                    help();
-                }
-                else if (command.matches(EDIT_TITLE_PATTERN)){
-                    taskPageWithID(getMatcher(command, EDIT_TITLE_PATTERN));
-                    theTask.updateTitle(newFeature(getMatcher(command, EDIT_TITLE_PATTERN)));
-                    System.out.println("Title updated successfully!");
-                }
-                else if (command.matches(EDIT_DESCRIPTION_PATTERN)){
-                    taskPageWithID(getMatcher(command, EDIT_DESCRIPTION_PATTERN));
-                    theTask.updateDescription(newFeature(getMatcher(command, EDIT_DESCRIPTION_PATTERN)));
-                    System.out.println("Description updated successfully!");
-                }
-                else if (command.matches(EDIT_PRIORITY_PATTERN)){
-                    taskPageWithID(getMatcher(command, EDIT_PRIORITY_PATTERN));
-                    theTask.updatePriority(newFeature(getMatcher(command, EDIT_PRIORITY_PATTERN)));
-                    System.out.println("Priority updated successfully!");
-                }
-                else if (command.matches(EDIT_DEADLINE_PATTERN)){
-                    taskPageWithID(getMatcher(command, EDIT_DEADLINE_PATTERN));
-                    theTask.updateDeadline(newYear(getMatcher(command, EDIT_DEADLINE_PATTERN)),
-                            newMonth(getMatcher(command, EDIT_DEADLINE_PATTERN)),
-                            newDay(getMatcher(command, EDIT_DEADLINE_PATTERN)),
-                            newHour(getMatcher(command, EDIT_DEADLINE_PATTERN)),
-                            newMinute(getMatcher(command, EDIT_DEADLINE_PATTERN)));
-                    System.out.println("Deadline updated successfully!");
-                }
-                else if (command.matches(ASSIGNED_USERS_ADD_PATTERN)){
-                    taskPageWithID(getMatcher(command, ASSIGNED_USERS_ADD_PATTERN));
-                    theTask.addUser(getUsername(getMatcher(command, ASSIGNED_USERS_ADD_PATTERN)));
-                    System.out.println("User"+ getUsername(getMatcher(command, ASSIGNED_USERS_ADD_PATTERN))+"added successfully!");
-                }
-                else if (command.matches(ASSIGNED_USERS_REMOVE_PATTERN)){
-                    taskPageWithID(getMatcher(command, ASSIGNED_USERS_REMOVE_PATTERN));
-                    theTask.removeUser(getUsername(getMatcher(command, ASSIGNED_USERS_REMOVE_PATTERN)));
-                    System.out.println("User"+ getUsername(getMatcher(command, ASSIGNED_USERS_REMOVE_PATTERN))+"removed successfully!");
-                }
-                else System.out.println(INVALID_COMMAND_PROMPT);
+            try {
+                command = getScanner().nextLine();
+                if (User.getLoggedInUser() instanceof Leader) {
+                    if (command.matches(BACK_PATTERN)) {
+                        return;
+                    } else if (command.matches(HELP_PATTERN)) {
+                        help();
+                    } else if (command.matches(EDIT_TITLE_PATTERN)) {
+                        taskPageWithID(getMatcher(command, EDIT_TITLE_PATTERN));
+                        theTask.updateTitle(newFeature(getMatcher(command, EDIT_TITLE_PATTERN)));
+                        System.out.println("Title updated successfully!");
+                    } else if (command.matches(EDIT_DESCRIPTION_PATTERN)) {
+                        taskPageWithID(getMatcher(command, EDIT_DESCRIPTION_PATTERN));
+                        theTask.updateDescription(newFeature(getMatcher(command, EDIT_DESCRIPTION_PATTERN)));
+                        System.out.println("Description updated successfully!");
+                    } else if (command.matches(EDIT_PRIORITY_PATTERN)) {
+                        taskPageWithID(getMatcher(command, EDIT_PRIORITY_PATTERN));
+                        theTask.updatePriority(newFeature(getMatcher(command, EDIT_PRIORITY_PATTERN)));
+                        System.out.println("Priority updated successfully!");
+                    } else if (command.matches(EDIT_DEADLINE_PATTERN)) {
+                        taskPageWithID(getMatcher(command, EDIT_DEADLINE_PATTERN));
+                        theTask.updateDeadline(newYear(getMatcher(command, EDIT_DEADLINE_PATTERN)),
+                                newMonth(getMatcher(command, EDIT_DEADLINE_PATTERN)),
+                                newDay(getMatcher(command, EDIT_DEADLINE_PATTERN)),
+                                newHour(getMatcher(command, EDIT_DEADLINE_PATTERN)),
+                                newMinute(getMatcher(command, EDIT_DEADLINE_PATTERN)));
+                        System.out.println("Deadline updated successfully!");
+                    } else if (command.matches(ASSIGNED_USERS_ADD_PATTERN)) {
+                        taskPageWithID(getMatcher(command, ASSIGNED_USERS_ADD_PATTERN));
+                        theTask.addUser(getUsername(getMatcher(command, ASSIGNED_USERS_ADD_PATTERN)));
+                        System.out.println("User" + getUsername(getMatcher(command, ASSIGNED_USERS_ADD_PATTERN)) + "added successfully!");
+                    } else if (command.matches(ASSIGNED_USERS_REMOVE_PATTERN)) {
+                        taskPageWithID(getMatcher(command, ASSIGNED_USERS_REMOVE_PATTERN));
+                        theTask.removeUser(getUsername(getMatcher(command, ASSIGNED_USERS_REMOVE_PATTERN)));
+                        System.out.println("User" + getUsername(getMatcher(command, ASSIGNED_USERS_REMOVE_PATTERN)) + "removed successfully!");
+                    } else System.out.println(INVALID_COMMAND_PROMPT);
+                } else System.out.println("You Don’t Have Access To Do This Action!");
+            }catch (Exception ignore){
+
             }
-            else System.out.println("You Don’t Have Access To Do This Action!");
         }
     }
 

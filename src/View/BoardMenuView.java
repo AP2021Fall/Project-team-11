@@ -50,14 +50,16 @@ public class BoardMenuView {
                             Board board1 = new Board(name, selectedTeam);
                         }
                 }
-                if(input.matches(removeBoardFromTeam)){
+                    if(input.matches(removeBoardFromTeam)){
                     TeamMenuView.getSelectedTeam().removeBoardFromTeam(TeamMenuView.getSelectedTeam().getBoardByName(getBoardName(Main.getMatcher(input, removeBoardFromTeam))));
                 }
-                if(input.matches(selectBoard)){
+                else if(input.matches(selectBoard)){
                     selectedBoard = selectedTeam.getBoardByName(getBoardName(Main.getMatcher(input, selectBoard)));
+                    System.out.println("Board is selected");
                 }
                 if(input.matches(deselectBoard)){
                     selectedBoard = null;
+                    System.out.println("Board deselected");
 
                 }
                 if(input.matches(newCategory)){
@@ -91,9 +93,12 @@ public class BoardMenuView {
                     
                 }
 
-            }else if (input.startsWith("board --new --name")){
+
+            }
+                else if (input.startsWith("board --new --name")){
                 System.out.println("You do not have the permission to do that action!");
             }
+
             }
         }
     }

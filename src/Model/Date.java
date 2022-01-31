@@ -43,7 +43,7 @@ public class Date implements Comparable{
             monthDifference += 12;
             yearDifference -= 1;
         }
-        return String.valueOf(yearDifference) + "-" + String.valueOf(monthDifference) + "-" + String.valueOf(dayDifference);
+        return yearDifference + "-" + monthDifference + "-" + dayDifference;
     }
 
 
