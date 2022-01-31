@@ -29,12 +29,13 @@ public class Date implements Comparable{
 
     public static String timeDifferenceWithLive (Date date){
         String liveTimeStr = liveTime();
-        int liveYear = liveTimeStr.charAt(0) + liveTimeStr.charAt(1) + liveTimeStr.charAt(2) + liveTimeStr.charAt(3) ;
-        int yearDifference = liveYear - date.year ;
-        int liveMonth = liveTimeStr.charAt(5) + liveTimeStr.charAt(6);
-        int monthDifference = liveMonth - date.month;
-        int liveDate = liveTimeStr.charAt(8) + liveTimeStr.charAt(9);
-        int dayDifference = liveDate - date.day;
+        String[] splitLiveTime =  liveTime().split("-");
+        int liveYear = Integer.parseInt(splitLiveTime[0]) ;
+        int yearDifference =  date.year - liveYear ;
+        int liveMonth = Integer.parseInt(splitLiveTime[1]) ;
+        int monthDifference = date.month - liveMonth;
+        int liveDate = Integer.parseInt(splitLiveTime[2]) ;
+        int dayDifference = date.day - liveDate;
         if(dayDifference < 0) {
             dayDifference += 30;
             monthDifference -= 1;
@@ -43,7 +44,7 @@ public class Date implements Comparable{
             monthDifference += 12;
             yearDifference -= 1;
         }
-        return yearDifference + "-" + monthDifference + "-" + dayDifference;
+        return yearDifference + "/" + monthDifference + "/" + dayDifference;
     }
 
 

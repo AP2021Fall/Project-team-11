@@ -16,9 +16,10 @@ public class CalenderMenuView {
         while(!(input = scanner.nextLine()).equals("back")){
             if(input.equals("calendar --show deadlines")){
                 ArrayList <String> deadlines = new ArrayList<>(controller.getFormattedDeadlines());
-                for (int i = 0 ; i < deadlines.size(); i ++) {
-                    System.out.println(i+1 + " : " + deadlines.get(i));
-                }
+                    for (int i = 0 ; i < deadlines.size(); i ++) {
+                        System.out.println(i+1 + " : " + deadlines.get(i));
+                    }
+                    System.out.println("No other tasks to be shown!");
             }else{
                 System.out.println("invalid command!");
             }

@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class User implements Comparable{
     public boolean isLeader;
@@ -11,6 +12,7 @@ public class User implements Comparable{
     protected String emailAddress;
     protected ArrayList<Team> teams = new ArrayList<>();
     protected ArrayList<Task> tasks = new ArrayList<>();
+    private ArrayList <String> notifications = new ArrayList<>();
 
 
     public User(String username, String password, String emailAddress) {
@@ -21,6 +23,14 @@ public class User implements Comparable{
 
     public static ArrayList<User> getUsers() {
         return users;
+    }
+
+    public static void addNotification(String notification , User user){
+        user.getNotifications().add(notification);
+    }
+
+    public ArrayList<String> getNotifications(){
+        return notifications;
     }
 
     public String getPassword() {

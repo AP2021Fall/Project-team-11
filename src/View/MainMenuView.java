@@ -100,6 +100,7 @@ public class MainMenuView {
                     }
 
                     if(input.startsWith("assign member")){
+                        User.addNotification("A task was assigned to you by" + User.getLoggedInUser().getUsername(), User.getUserWithUserName(splitInput[5]));
                         System.out.println(controller.assignTask(splitInput[3],splitInput[5]));
                     }
 
@@ -172,3 +173,4 @@ public class MainMenuView {
 
     }
 }
+
