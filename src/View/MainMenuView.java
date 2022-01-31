@@ -134,7 +134,7 @@ public class MainMenuView {
                 }
 
                 if(input.startsWith("change role")){
-                    System.out.println(controller.changeRole(splitInput[2],splitInput[4]));
+                    System.out.println(controller.changeRole(splitInput[3],splitInput[6]));
                 }
 
                 if(input.startsWith("show profile")){

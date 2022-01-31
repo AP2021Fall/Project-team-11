@@ -134,7 +134,7 @@ public class MainMenuController {
         User user = User.getUserWithUserName(username);
         if(user == null || user.equals(User.getLoggedInUser()))
             return "There is no user with this username";
-        if(!role.equalsIgnoreCase("Member") || !role.equalsIgnoreCase("Leader"))
+        if(!role.equalsIgnoreCase("Member") && !role.equalsIgnoreCase("Leader"))
             return "Invalid role";
         if(user instanceof Member && role.equalsIgnoreCase("Member") || user instanceof Leader && role.equalsIgnoreCase("Leader"))
             return "User already have this role";
