@@ -76,6 +76,8 @@ public class TeamMenuView {
                     for(int i = 0 ; i < alltasks.size() ;i++){
                         System.out.println(i+1 + "-\n" + alltasks.get(i));
                     }
+                }else if(input.equals("enter board menu")){
+                    BoardMenuView.getBoardMenuView().run();
                 }
                 else System.out.println("not doable , due to unacceptable selected team or invalid command");
 
