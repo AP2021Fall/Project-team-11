@@ -16,7 +16,12 @@ public class Category {
         this.id = idGenerator++;
     }
 
-    public void assignTask(Task task){this.tasks.add(task);}
+    public void assignTask(Task task){
+        this.tasks.add(task);
+        if(this.name.equals("done")){
+            task.changeProgressPercentage(100);
+        }
+    }
 
     public String getName(){return name;}
 
