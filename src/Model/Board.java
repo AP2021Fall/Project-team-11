@@ -50,6 +50,8 @@ public class Board {
 
     public void setState(Boolean state){this.state = state;}
 
+    public boolean getState(Boolean state){return state;}
+
     public static Board getActiveBoard(){return activeBoard;}
 
 
