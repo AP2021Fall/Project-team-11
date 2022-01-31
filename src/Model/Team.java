@@ -36,7 +36,7 @@ public class Team {
     }
 
     public void addChats(String chat , User user) {
-        chat = chats.size() + " " +chat;
+        chat = (chats.size()+1) + " " +chat;
         this.chats.put(chat, user);
     }
 
