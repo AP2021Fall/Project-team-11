@@ -168,5 +168,8 @@ public class Team {
             }
         }
     }
+    public void removeBoardFromTeam(Board board){
+        boards.remove(board);
+    }
 
 }

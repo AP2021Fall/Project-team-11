@@ -4,11 +4,12 @@ import java.util.ArrayList;
 
 import Model.*;
 import View.TeamMenuView;
+import View.BoardMenuView;
 
 public class BoardMenuController {
 
 
-    public String addCategory(String name , int column){
+    public static String addCategoryToBoard(String name , int column){
         Category category = Board.getActiveBoard().getCategoryByName(name);
         if (category.equals(null)){
             //view handler
@@ -16,7 +17,7 @@ public class BoardMenuController {
         }
         else {
             try {
-                Board.getActiveBoard().getCategories().add(column - 1,category);
+                BoardMenuView.getSelectedBoard().getCategories().add(column - 1,category);
             }catch (Exception e){
                 return "Wrong column";
             }
@@ -34,8 +35,15 @@ public class BoardMenuController {
 
     }
 
-    public void addScores(){
-
+    public static String addCategorysBoard(String name){
+        if(name == BoardMenuView.getSelectedBoard().getCategoryByName(name).getName()){
+            return "This category already exists on board!";
+        }
+        else{
+        Category category = new Category(name, BoardMenuView.getSelectedBoard());
+        BoardMenuController.addCategoryToBoard(category.getName() , 1);
+            return "Category" + category.getName() + " successdully added to selected board" ;
+        }
     }
 
 

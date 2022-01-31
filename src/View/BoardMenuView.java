@@ -9,6 +9,7 @@ import Model.Team;
 import Model.User;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import Model.Team;
 
 public class BoardMenuView {
     private static Board selectedBoard;
@@ -50,7 +51,7 @@ public class BoardMenuView {
                         }
                 }
                 if(input.matches(removeBoardFromTeam)){
-                    TeamMenuView.getSelectedTeam().getBoardByName(getBoardName(Main.getMatcher(input, removeBoardFromTeam)));
+                    TeamMenuView.getSelectedTeam().removeBoardFromTeam(TeamMenuView.getSelectedTeam().getBoardByName(getBoardName(Main.getMatcher(input, removeBoardFromTeam))));
                 }
                 if(input.matches(selectBoard)){
                     selectedBoard = selectedTeam.getBoardByName(getBoardName(Main.getMatcher(input, selectBoard)));
@@ -60,7 +61,7 @@ public class BoardMenuView {
 
                 }
                 if(input.matches(newCategory)){
-                    
+                    System.out.println(BoardMenuController.addCategorysBoard(getBoardName(Main.getMatcher(input, newCategory))));
                 }
                 if(input.matches(setColumn)){
 
@@ -69,13 +70,13 @@ public class BoardMenuView {
                     
                 }
                 if(input.matches(addTaskToBoard)){
-
+                    System.out.println(BoardMenuController.addTaskToBoard(getTaskIdfromCommand(Main.getMatcher(input, addTaskToBoard))));
                 }
                 if(input.matches(forceCategory)){
 
                 }
                 if(input.matches(nextCategory)){
-
+                    
                 }
                 if(input.matches(showCategory)){
 
@@ -100,12 +101,18 @@ public class BoardMenuView {
     public static BoardMenuView getBoardMenuView() {
         return boardMenuView;
     }
+    private int getTaskIdfromCommand(Matcher matcher){
+        matcher.find();
+        return Integer.parseInt(matcher.group(1));
+    }
 
     private BoardMenuView(){
 
     }
     private String getBoardName(Matcher matcher){
         matcher.find();
-        return matcher.group(2);
+        return matcher.group(1);
     }
+
+    public static Board getSelectedBoard(){return selectedBoard;}
 }
