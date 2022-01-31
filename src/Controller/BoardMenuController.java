@@ -3,15 +3,15 @@ package Controller;
 import java.util.ArrayList;
 
 import Model.*;
-import View.TeamMenuView;
 import View.BoardMenuView;
+import View.TeamMenuView;
 
 public class BoardMenuController {
 
 
     public static String addCategoryToBoard(String name , int column){
         Category category = Board.getActiveBoard().getCategoryByName(name);
-        if (category.equals(null)){
+        if (category == null){
             //view handler
             return "NO Category with this name";
         }
@@ -28,7 +28,7 @@ public class BoardMenuController {
     public static String addTaskToBoard(int taskID){
         ArrayList<Task> allTasks = new ArrayList<>(TeamMenuView.getSelectedTeam().getAllTasks());
         Task theTask = TeamMenuView.getSelectedTeam().getTaskWithId(taskID);
-        if(theTask.equals(null)){
+        if(theTask == null){
             return "This task doesn't exist in your team";
         }
         return Board.getActiveBoard().addTaskToBoard(theTask);
@@ -40,8 +40,8 @@ public class BoardMenuController {
             return "This category already exists on board!";
         }
         else{
-        Category category = new Category(name, BoardMenuView.getSelectedBoard());
-        BoardMenuController.addCategoryToBoard(category.getName() , 1);
+            Category category = new Category(name, BoardMenuView.getSelectedBoard());
+            BoardMenuController.addCategoryToBoard(category.getName() , 1);
             return "Category" + category.getName() + " successdully added to selected board" ;
         }
     }

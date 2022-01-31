@@ -72,4 +72,9 @@ public class Date implements Comparable{
         this.hour = Integer.parseInt(dateSplit2[0]);
         this.minute = Integer.parseInt(dateSplit2[1]);
     }
+
+    @Override
+    public String toString() {
+        return year+"-"+month +"-" + day;
+    }
 }

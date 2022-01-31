@@ -22,7 +22,7 @@ public class MainMenuView {
                 "Team Menu\n" +
                 "Task Page\n" +
                 "Calendar Menu");
-        while(!(input = scanner.nextLine()).isEmpty()){
+        while(!(input = scanner.nextLine()).equals("logout")){
             if(input.startsWith("enter menu")) {
                 String menuName = input.split(" ")[2];
 
@@ -114,7 +114,7 @@ public class MainMenuView {
                 }
             }
 
-            if(User.getLoggedInUser() instanceof Admin){
+            else if(User.getLoggedInUser() instanceof Admin){
                 String[] splitInput = input.split(" ");
 
                 if(input.equals("show --pendingTeams")){
@@ -147,12 +147,6 @@ public class MainMenuView {
                     System.out.println(user.getEmailAddress());
                     System.out.println(user.getClass().getSimpleName());
                 }
-            }
-
-
-            else if(input.equals("logout")){
-                User.setLoggedInUser(null);
-                return;
             }
 
             else

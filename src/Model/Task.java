@@ -156,6 +156,10 @@ public class Task implements Comparable{
         return taskTeam;
     }
 
-    public void changeProggressPercentage(int percentage){this.progressPercentage = percentage;}
+    public void changeProgressPercentage(int percentage){this.progressPercentage = percentage;}
 
+    @Override
+    public String toString() {
+        return "task title: " + title + "\nid: " +id + "\ncreation date: " + startTime + "\ndeadline " + deadline;
+    }
 }

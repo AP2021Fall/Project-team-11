@@ -21,7 +21,6 @@ public class TeamMenuView {
     String input;
     public void run(){
         System.out.println("TEAM MENU");
-        System.out.println("Your selected Team is :" + selectedTeam.getTeamName());
         ArrayList<Team> userTeams = User.getLoggedInUser().getTeams();
                     for(int i = 0 ; i < userTeams.size(); i++){
                         System.out.println((i+1) + " " + userTeams.get(i).getTeamName());
@@ -75,7 +74,7 @@ public class TeamMenuView {
                 }else if(input.equals("show tasks") && (selectedTeam) != null){
                     ArrayList<Task> alltasks = selectedTeam.getAllTasks();
                     for(int i = 0 ; i < alltasks.size() ;i++){
-                        System.out.println(i+1 + " " + alltasks.get(i));
+                        System.out.println(i+1 + "-\n" + alltasks.get(i));
                     }
                 }
                 else System.out.println("not doable , due to unacceptable selected team or invalid command");
