@@ -35,6 +35,7 @@ public class Task implements Comparable{
         this.deadline = deadline;
         this.id = ++lastId;
         this.taskTeam=taskTeam;
+        allTasks.add(this);
     }
 
 
@@ -110,7 +111,7 @@ public class Task implements Comparable{
     }
 
     public void updateDescription(String newDescription){
-        this.title = newDescription;
+        this.description = newDescription;
     }
 
     public void updatePriority(String newPriority){

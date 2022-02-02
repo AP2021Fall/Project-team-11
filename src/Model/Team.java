@@ -147,12 +147,6 @@ public class Team {
         }
         return null;
     }
-        public Board getBoardByName(String name){
-        for (Board board : TeamMenuView.getSelectedTeam().boards) {
-            if (board.getName() == name) return board;
-        }
-        return null;
-    }
 
     public void addScores(){
         for(Task task : allTasks){
@@ -179,6 +173,14 @@ public class Team {
     }
     public void removeBoardFromTeam(Board board){
         boards.remove(board);
+    }
+
+    public Board getBoardByName(String name){
+        for (Board board : boards) {
+            if(name.equals(board.getName()))
+                return board;
+        }
+        return null;
     }
 
 }

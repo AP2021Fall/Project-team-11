@@ -13,7 +13,7 @@ public class Category {
     public Category(String name ,Board board){
         this.name = name;
         this.board = board;
-        this.id = idGenerator++;
+        this.id = ++idGenerator;
     }
 
     public void assignTask(Task task){

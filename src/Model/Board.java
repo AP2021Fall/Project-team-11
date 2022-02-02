@@ -65,7 +65,10 @@ public class Board {
         }
         return null;
     }
-    
+
+    public void addCategory(Category category){
+        categories.add(category);
+    }
 
 
 }

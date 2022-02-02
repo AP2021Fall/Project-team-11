@@ -8,9 +8,9 @@ import View.TeamMenuView;
 
 public class BoardMenuController {
 
-
-    public static String addCategoryToBoard(String name , int column){
-        Category category = Board.getActiveBoard().getCategoryByName(name);
+    private static Board selectedBoard = BoardMenuView.getSelectedBoard();
+    public static String moveCategoryToColumn(String name , int column){
+        Category category = selectedBoard.getCategoryByName(name);
         if (category == null){
             //view handler
             return "NO Category with this name";
@@ -26,23 +26,20 @@ public class BoardMenuController {
     }
 
     public static String addTaskToBoard(int taskID){
-        ArrayList<Task> allTasks = new ArrayList<>(TeamMenuView.getSelectedTeam().getAllTasks());
         Task theTask = TeamMenuView.getSelectedTeam().getTaskWithId(taskID);
         if(theTask == null){
             return "This task doesn't exist in your team";
         }
-        return Board.getActiveBoard().addTaskToBoard(theTask);
+        return selectedBoard.addTaskToBoard(theTask);
 
     }
 
-    public static String addCategorysBoard(String name){
-        if(name == BoardMenuView.getSelectedBoard().getCategoryByName(name).getName()){
+    public static String addCategoryToBoard(String name){
+        if(selectedBoard.getCategoryByName(name) !=null)
             return "This category already exists on board!";
-        }
-        else{
-            Category category = new Category(name, BoardMenuView.getSelectedBoard());
-            BoardMenuController.addCategoryToBoard(category.getName() , 1);
-            return "Category" + category.getName() + " successdully added to selected board" ;
-        }
+        Category category = new Category(name, selectedBoard);
+        System.out.println("ok");
+        selectedBoard.addCategory(category);
+        return "Category" + category.getName() + " successfully added to selected board" ;
     }
 }

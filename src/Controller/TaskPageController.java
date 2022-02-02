@@ -7,12 +7,12 @@ import static Main.Main.*;
 
 public class TaskPageController {
     private Task theTask;
-    private final String EDIT_TITLE_PATTERN = "edit --task --id (\\w+) --title (\\w+)";
-    private final String EDIT_DESCRIPTION_PATTERN = "edit --task --id (\\w+) --descriptions (\\w+)";
-    private final String EDIT_PRIORITY_PATTERN = "edit --task --id (\\w+) --Priority (Highest || High || Low || Lowest)";
-    private final String EDIT_DEADLINE_PATTERN = "edit --task --id (\\w+) --Deadline (\\d{4})-(\\d{2})-(\\d{2})|(\\d{2}):(\\d{2})";
-    private final String ASSIGNED_USERS_REMOVE_PATTERN = "edit --task --id (\\w+) --assignedUsers (\\w+) --remove";
-    private final String ASSIGNED_USERS_ADD_PATTERN = "edit --task --id (\\w+) --assignedUsers (\\w+) --add";
+    private final String EDIT_TITLE_PATTERN = "edit --task --id (\\d+) --title (\\w+)";
+    private final String EDIT_DESCRIPTION_PATTERN = "edit --task --id (\\d+) --descriptions (\\w+)";
+    private final String EDIT_PRIORITY_PATTERN = "edit --task --id (\\d+) --Priority ((Highest)| (High) | (Low) | (Lowest))";
+    private final String EDIT_DEADLINE_PATTERN = "edit --task --id (\\d+) --Deadline (\\d{4})-(\\d{2})-(\\d{2})\\|(\\d{2}):(\\d{2})";
+    private final String ASSIGNED_USERS_REMOVE_PATTERN = "edit --task --id (\\d+) --assignedUsers (\\w+) --remove";
+    private final String ASSIGNED_USERS_ADD_PATTERN = "edit --task --id (\\d+) --assignedUsers (\\w+) --add";
     private final String HELP_PATTERN = "help";
     private final String BACK_PATTERN = "back";
     private final String INVALID_COMMAND_PROMPT = "invalid command!";
@@ -31,9 +31,8 @@ public class TaskPageController {
                 if (User.getLoggedInUser() instanceof Leader) {
                     if (command.matches(BACK_PATTERN)) {
                         return;
-                    } else if (command.matches(HELP_PATTERN)) {
-                        help();
-                    } else if (command.matches(EDIT_TITLE_PATTERN)) {
+                    }
+                     else if (command.matches(EDIT_TITLE_PATTERN)) {
                         taskPageWithID(getMatcher(command, EDIT_TITLE_PATTERN));
                         theTask.updateTitle(newFeature(getMatcher(command, EDIT_TITLE_PATTERN)));
                         System.out.println("Title updated successfully!");
@@ -56,15 +55,15 @@ public class TaskPageController {
                     } else if (command.matches(ASSIGNED_USERS_ADD_PATTERN)) {
                         taskPageWithID(getMatcher(command, ASSIGNED_USERS_ADD_PATTERN));
                         theTask.addUser(getUsername(getMatcher(command, ASSIGNED_USERS_ADD_PATTERN)));
-                        System.out.println("User" + getUsername(getMatcher(command, ASSIGNED_USERS_ADD_PATTERN)) + "added successfully!");
+                        System.out.println("User " + getUsername(getMatcher(command, ASSIGNED_USERS_ADD_PATTERN)) + " added successfully!");
                     } else if (command.matches(ASSIGNED_USERS_REMOVE_PATTERN)) {
                         taskPageWithID(getMatcher(command, ASSIGNED_USERS_REMOVE_PATTERN));
                         theTask.removeUser(getUsername(getMatcher(command, ASSIGNED_USERS_REMOVE_PATTERN)));
-                        System.out.println("User" + getUsername(getMatcher(command, ASSIGNED_USERS_REMOVE_PATTERN)) + "removed successfully!");
+                        System.out.println("User " + getUsername(getMatcher(command, ASSIGNED_USERS_REMOVE_PATTERN)) + " removed successfully!");
                     } else System.out.println(INVALID_COMMAND_PROMPT);
                 } else System.out.println("You Don’t Have Access To Do This Action!");
-            }catch (Exception ignore){
-
+            }catch (Exception e){
+                e.printStackTrace();
             }
         }
     }
@@ -80,6 +79,7 @@ public class TaskPageController {
     private void taskPageWithID(Matcher matcher) {
         matcher.find();
         int id = Integer.parseInt(matcher.group(1));
+        System.out.println(id);
         theTask = Task.getTaskById(id);
     }
 

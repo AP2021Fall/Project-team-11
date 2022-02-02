@@ -4,11 +4,10 @@ import java.util.Scanner;
 
 import Controller.BoardMenuController;
 import Main.Main;
-import Model.Board;
-import Model.Team;
-import Model.User;
+import Model.*;
+
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 import Model.Team;
 
 public class BoardMenuView {
@@ -21,7 +20,7 @@ public class BoardMenuView {
     private String selectBoard = "board --select --name (\\w)";
     private String deselectBoard = "board --deselect";
     private String newCategory = "board --new --category (\\w+)";
-    private String setColumn = "board --category (\\w+) --column (\\w+)";
+    private String setColumn = "board --category (\\w+) --column (\\d+)";
     private String done = "board --done";
     private String addTaskToBoard = "board --add (\\w+)";
     private String forceCategory = "board --force --category (\\w+) --task(\\w+)";
@@ -39,74 +38,109 @@ public class BoardMenuView {
         String input;
         while(!(input = scanner.nextLine()).equals("back")){
             String[] splitInput = input.split(" ");
-            if (loggedInUserIsLeader){
+            if (User.getLoggedInUser() instanceof Leader) {
                 if(input.matches(addNewBoardNamePattern)){
                     String name = splitInput[3];
-                    for(Board board :selectedTeam.getBoards()){
-                        if(board.getName() == name){
-                            System.out.println("There is already a board with this name");
-                        }
-                        else{
-                            Board board1 = new Board(name, selectedTeam);
-                        }
+                    if(selectedTeam.getBoardByName(name) != null){
+                        System.out.println("Board already exists!");
+                        continue;
+                    }
+                    new Board(name, selectedTeam);
+                    System.out.println("Board added successfully");
                 }
-                    if(input.matches(removeBoardFromTeam)){
-                    TeamMenuView.getSelectedTeam().removeBoardFromTeam(TeamMenuView.getSelectedTeam().getBoardByName(getBoardName(Main.getMatcher(input, removeBoardFromTeam))));
+
+                else if(input.matches(removeBoardFromTeam)){
+                    String name = splitInput[3];
+                    Board board = selectedTeam.getBoardByName(name);
+                    if(board == null){
+                        System.out.println("Board doesn't exist!");
+                    }
+                    selectedTeam.removeBoardFromTeam(board);
+                    System.out.println("Board removed successfully!");
                 }
+
                 else if(input.matches(selectBoard)){
-                    selectedBoard = selectedTeam.getBoardByName(getBoardName(Main.getMatcher(input, selectBoard)));
+                    System.out.println("ok");
+                    String name = splitInput[3];
+                    if(selectedTeam.getBoardByName(name)==null){
+                        System.out.println("Board do not exists!");
+                        continue;
+                    }
+
+                    selectedBoard =  selectedTeam.getBoardByName(name);
                     System.out.println("Board is selected");
                 }
-                if(input.matches(deselectBoard)){
+
+                else if(input.matches(deselectBoard)){
                     selectedBoard = null;
                     System.out.println("Board deselected");
 
                 }
-                if(input.matches(newCategory)){
-                    System.out.println(BoardMenuController.addCategorysBoard(getBoardName(Main.getMatcher(input, newCategory))));
+
+                else if(input.matches(newCategory)){
+
+                    String name = splitInput[3];
+                    System.out.println("ok");
+                    System.out.println(BoardMenuController.addCategoryToBoard(name));
                 }
-                if(input.matches(setColumn)){
+
+                else if(input.matches(setColumn)){
+                    String name = splitInput[2];
+                    int column = Integer.parseInt(splitInput[4]);
+                    System.out.println(BoardMenuController.moveCategoryToColumn(name,column));
+                }
+
+                else if(input.matches(done)){
+                    if(selectedBoard.getCategories().isEmpty())
+                    {
+                        System.out.println("Please make a category first");
+                        continue;
+                    }
+                    selectedBoard.setState(true);
+                    System.out.println("Board is now ready!");
+                }
+
+                else if(input.matches(addTaskToBoard)){
+                    System.out.println(BoardMenuController.addTaskToBoard(Integer.parseInt(splitInput[2])));
+                }
+
+                else if(input.matches(forceCategory)){
 
                 }
-                if(input.matches(done)){
+
+                else if(input.matches(nextCategory)){
                     
                 }
-                if(input.matches(addTaskToBoard)){
-                    System.out.println(BoardMenuController.addTaskToBoard(getTaskIdfromCommand(Main.getMatcher(input, addTaskToBoard))));
-                }
-                if(input.matches(forceCategory)){
+
+                else if(input.matches(showCategory)){
 
                 }
-                if(input.matches(nextCategory)){
-                    
-                }
-                if(input.matches(showCategory)){
+
+                else if(input.matches(showDone)){
 
                 }
-                if(input.matches(showDone)){
+
+                else if(input.matches(showFailed)){
 
                 }
-                if(input.matches(showFailed)){
 
-                }
-                if(input.matches(showBoard)){
+                else if(input.matches(showBoard)){
                     
                 }
 
 
-            }
-                else if (input.startsWith("board --new --name")){
+            } else
                 System.out.println("You do not have the permission to do that action!");
-            }
 
-            }
+
+
         }
     }
 
     public static BoardMenuView getBoardMenuView() {
         return boardMenuView;
     }
-    private int getTaskIdfromCommand(Matcher matcher){
+    private int getTaskIdFromCommand(Matcher matcher){
         matcher.find();
         return Integer.parseInt(matcher.group(1));
     }
