@@ -78,7 +78,7 @@ public class TeamMenuView {
                     }
                 }else if(input.equals("enter board menu")){
                     BoardMenuView.getBoardMenuView().run();
-                }else if((input.startsWith("send notification --team")) && (User.getLoggedInUser().isLeader)){
+                }else if((input.startsWith("send notification --team")) && User.getLoggedInUser().isLeader){
                     String[] notification = input.split(" ");
                     String message ="";
                     for(int i = 3 ; i  < notification.length ; i++){
@@ -88,7 +88,7 @@ public class TeamMenuView {
                         User.addNotification(message, user);
                     }
                     
-                }else if((input.startsWith("send notification --user")) && (User.getLoggedInUser().isLeader)){
+                }else if((input.startsWith("send notification --user")) && User.getLoggedInUser().isLeader){
                     String[] notification = input.split(" ");
                     String message ="";
                     for(int i = 4 ; i  < notification.length ; i++){

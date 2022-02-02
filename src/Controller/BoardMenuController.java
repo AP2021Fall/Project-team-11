@@ -45,12 +45,4 @@ public class BoardMenuController {
             return "Category" + category.getName() + " successdully added to selected board" ;
         }
     }
-
-
 }
-// if(yearDifference < 0 || ((yearDifference == 0 )&& (monthDifference < 0)) || ((yearDifference == 0) && (monthDifference == 0) && (dayDifference < 0))){
-//     return false;
-// }
-// else{
-//     return true;
-// }
