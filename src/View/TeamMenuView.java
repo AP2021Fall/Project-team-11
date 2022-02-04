@@ -2,6 +2,7 @@ package View;
 
 import Controller.LoginMenuController;
 import Main.Main;
+import javafx.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -84,9 +85,7 @@ public class TeamMenuView {
                     for(int i = 3 ; i  < notification.length ; i++){
                         message += notification[i] + " ";
                     }
-                    for(User user : selectedTeam.getMembers()){
-                        User.addNotification(message, user);
-                    }
+                    controller.addNotificationForTeam(message, selectedTeam);
                     
                 }else if((input.startsWith("send notification --user")) && User.getLoggedInUser().isLeader){
                     String[] notification = input.split(" ");
@@ -94,7 +93,7 @@ public class TeamMenuView {
                     for(int i = 4 ; i  < notification.length ; i++){
                         message += notification[i] + " ";
                     }
-                    User.addNotification(message, User.getUserWithUserName(splitInput[3]));
+                    controller.addNotificationForUser(message ,splitInput[3]);
                 }
                 else System.out.println("not doable , due to unacceptable selected team or invalid command");
 

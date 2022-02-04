@@ -31,5 +31,14 @@ public class TeamMenuController {
         return output;
     }
 
+    public void addNotificationForUser(String message , String name){
+        User.addNotification(message, User.getUserWithUserName(name));
+    }
+
+    public void addNotificationForTeam(String message , Team team){
+        for(User user : team.getMembers()){
+            User.addNotification(message, user);
+        }
+    }
 
 }
