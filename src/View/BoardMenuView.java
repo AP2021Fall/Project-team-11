@@ -67,8 +67,8 @@ public class BoardMenuView {
                         continue;
                     }
 
-                    selectedBoard =  selectedTeam.getBoardByName(name);
-                    System.out.println("Board is selected");
+                    selectedBoard = selectedTeam.getBoardByName(name);
+                    System.out.println("Selected board is :" + name);
                 }
 
                 else if(input.matches(deselectBoard)){

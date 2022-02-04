@@ -159,6 +159,7 @@ public class MainMenuView {
 
     public static void setSelectedTeam(Team selectedTeam) {
         MainMenuView.selectedTeam = selectedTeam;
+        System.out.println("Selected team is :" + selectedTeam);
     }
 
     public static MainMenuView getMainMenuView() {
